@@ -1,0 +1,65 @@
+.ProposalList {
+  width: 100%;
+  height: fit-content;
+  border: 1px solid rgb(131, 128, 128);
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.proposalList-head {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.proposalList-desc {
+  width: 90%;
+  color: rgb(75, 70, 70);
+  line-height: 15px;
+  margin-bottom: 15px;
+}
+
+.proposalList-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.proposalList-details {
+  display: flex;
+}
+
+.prosalList-detail {
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(116, 112, 112);
+}
+
+.prosalList-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.prosalList-detail > span {
+  color: black;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.proposalList-btn {
+  display: flex;
+  cursor: pointer;
+}
+
+.proposalList-editbtn {
+  color: gray;
+  cursor: pointer;
+}
+
+.proposalList-deletebtn {
+  color: gray;
+  margin-left: 20px;
+}
