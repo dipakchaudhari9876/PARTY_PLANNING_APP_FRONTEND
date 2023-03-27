@@ -1,0 +1,66 @@
+.Proposal {
+  margin: 50px auto;
+  width: 85%;
+  height: fit-content;
+  padding: 5px 10px;
+}
+
+.proposal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.proposal-head-left {
+  display: flex;
+  align-items: center;
+}
+
+.proposal-header {
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.proposal-head-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(111, 110, 110);
+}
+
+.proposal-search-input {
+  width: 100px;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding-left: 5px;
+}
+
+.proposal-head-icon {
+  cursor: pointer;
+  color: rgb(80, 78, 78);
+}
+
+.proposal-head-right {
+  display: flex;
+  align-items: center;
+}
+
+.proposal-head-filter-icon {
+  color: rgb(80, 78, 78);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.proposal-head-btn {
+  padding: 5px 10px;
+  color: white;
+  background-color: rgb(10, 222, 233);
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

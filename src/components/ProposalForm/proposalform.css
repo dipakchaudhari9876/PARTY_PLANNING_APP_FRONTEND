@@ -1,0 +1,106 @@
+.ProposalForm {
+  margin: auto;
+  padding: 10px 0px;
+  width: 700px;
+  height: fit-content;
+  border: 1px solid black;
+  position: relative;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+.ProposalForm_head {
+  text-align: center;
+}
+
+.proposalForm_icon {
+  text-align: end;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.proposalForm_form {
+  display: flex;
+}
+
+.proposalForm_left {
+  flex: 1;
+  padding: 10px;
+  height: 450px;
+}
+
+.form_individual {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.form_align {
+  display: flex;
+  justify-content: space-between;
+}
+
+.proposalForm_desc {
+  height: 70px;
+}
+
+.proposalForm_right {
+  flex: 1;
+  padding: 10px;
+}
+
+.proposalForm_image_head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.proposalForm_displayImg {
+  height: 100px;
+  border: 1px soild black;
+  border-color: black;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.indImg {
+  width: 30%;
+  max-height: 50px;
+  margin: 5px;
+}
+
+.proposalForm_desc_right {
+  height: 97px;
+}
+
+.space {
+  width: 100%;
+  height: 100px;
+  border: 1px soild black;
+}
+.buttonDiv {
+  margin-top: 50px;
+}
+textarea {
+  resize: none;
+}
+#postButton {
+  background-color: #4e94f4;
+  color: white;
+  width: 50%;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: bolder;
+  margin-right: 200px;
+}
+
+#postButton:hover {
+  background-color: red;
+  color: black;
+}

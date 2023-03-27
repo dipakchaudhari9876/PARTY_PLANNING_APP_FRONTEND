@@ -1,0 +1,108 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  padding: 0px 25px;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+}
+.header-Logo {
+  line-height: 60px;
+  color: skyblue;
+}
+.header-logout {
+  display: flex;
+  position: relative;
+  margin-right: 10px;
+}
+
+.side-menu {
+  display: none;
+}
+
+.header-logout-pop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.header-username {
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 10px;
+  color: skyblue;
+}
+
+.header-profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid black;
+  object-fit: cover;
+}
+
+.side-menu:checked ~ .header-profile-display {
+  display: flex;
+}
+
+.header-profile-display {
+  position: absolute;
+  top: 36px;
+  right: -30px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: fit-content;
+  padding: 10px 20px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.header-profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.header-profile-name {
+  font-size: 25px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.header-profile-id {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.header-profile-id > span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.header-profile-logout {
+  font-size: 25px;
+  font-weight: 500;
+  padding: 3px 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgb(235, 75, 75);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.header-profile-logout:hover {
+  transform: scale(1.1);
+}
