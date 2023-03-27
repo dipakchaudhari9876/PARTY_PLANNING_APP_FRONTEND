@@ -5,7 +5,8 @@ import SelectedProposalComp from "./components/SelectedProposalComponent/Selecte
 function App() {
   return (
     <>
-      <MainComp/>
+      {/* <SelectedProposalComp /> */}
+      <MainComp />
     </>
   );
 }
