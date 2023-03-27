@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./proposal.css";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import ProposalList from "../ProposalList/ProposalList";
 import { proposalData } from "../../data";
+import { getVendorProposal } from "../../Utilities/proposal";
+import { Link } from "react-router-dom";
 
 const Proposal = () => {
+  const [proposal, setProposal] = useState([])
+  useEffect(() => {
+
+    const getProposal =async() => {
+      try{
+        const data =await getVendorProposal('641f2a93f8434008c555ac0d')
+        if (data) {
+          setProposal([...data]) 
+        }
+      }catch(err){
+        console.log(err)
+      }
+    }
+    getProposal()
+  }, [])
+
+  const handle = ()=>{
+    console.log(proposal)
+  }
   return (
     <>
       <Header />
@@ -25,13 +46,13 @@ const Proposal = () => {
           </div>
           <div className="proposal-head-right">
             <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon>
-            <button className="proposal-head-btn">CREATE</button>
+            <Link to={'/pro'} onClick={handle} className="proposal-head-btn">CREATE</Link>
           </div>
         </div>
         {/* <ProposalList/> */}
         <div>
-          {proposalData.map((data) => {
-            return <ProposalList key={data.id} {...data} />;
+          {proposal.map((data) => {
+            return <ProposalList key={data._id} {...data} />;
           })}
         </div>
       </div>
