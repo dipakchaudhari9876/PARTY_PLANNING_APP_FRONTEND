@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./proposalList.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Link } from "react-router-dom";
+
 
 const ProposalList = ({
   name,
-  location,
+  place,
   startDate,
   endDate,
   eventType,
-  price,
+  budget,
   events,
 }) => {
   const MAX_LENGTH = 200;
   return (
     <div className="ProposalList">
+    <Link to={'/event'}>
       <div className="proposalList-head">{name}</div>
+      </Link>
       <p className="proposalList-desc">
         {events.substring(0, MAX_LENGTH) + " ..."}
       </p>
@@ -25,7 +29,7 @@ const ProposalList = ({
             Event Type <span>{eventType}</span>
           </li>
           <li className="prosalList-detail">
-            Venue <span>{location}</span>
+            Venue <span>{place}</span>
           </li>
           <li className="prosalList-detail">
             From Date<span>{startDate}</span>
@@ -34,7 +38,7 @@ const ProposalList = ({
             From Date<span>{endDate}</span>
           </li>
           <li className="prosalList-detail">
-            Budget <span>{price}</span>
+            Budget <span>{budget}</span>
           </li>
         </ul>
         <div className="proposalList-btn">

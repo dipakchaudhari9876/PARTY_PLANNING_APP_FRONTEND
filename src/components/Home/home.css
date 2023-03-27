@@ -1,0 +1,25 @@
+.Home-headImg{
+    width: 100%;
+    object-fit: cover;
+    height: 210px;
+}
+
+.Home_proposalDisplay{
+    width: 90%;
+    padding: 20px 0px;
+    margin: 20px auto;
+    height: fit-content;
+}
+
+.Home_proposalDisplay_header{
+    font-size: 24px;
+    color: rgb(79, 76, 76);
+    margin-bottom: 20px;
+}
+
+.Home_proposalDisplay_content{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

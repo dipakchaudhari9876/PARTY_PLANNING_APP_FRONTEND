@@ -1,9 +1,27 @@
+.proposalForm_cont {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.5)), url('https://images.pexels.com/photos/135620/pexels-photo-135620.jpeg?auto=compress&cs=tinysrgb&w=940');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .ProposalForm {
-  margin: auto;
+  background-color: white;
+  margin: 100px auto;
   padding: 10px 0px;
   width: 700px;
   height: fit-content;
-  border: 1px solid black;
+  -webkit-box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.75);
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
   position: relative;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -29,6 +47,20 @@ label {
   display: flex;
 }
 
+.form_eventName {
+  height: 30px;
+}
+
+.filter-select {
+  width: 129px;
+  height: 30px;
+}
+
+.form_contact {
+  width: 130px;
+  height: 20px;
+}
+
 .proposalForm_left {
   flex: 1;
   padding: 10px;
@@ -38,7 +70,7 @@ label {
 .form_individual {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .form_align {
@@ -69,6 +101,7 @@ label {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
 .indImg {
   width: 30%;
   max-height: 50px;
@@ -84,23 +117,36 @@ label {
   height: 100px;
   border: 1px soild black;
 }
+
 .buttonDiv {
-  margin-top: 50px;
+  margin-top: 10px;
+  text-align: center;
 }
+
 textarea {
   resize: none;
 }
-#postButton {
-  background-color: #4e94f4;
+
+.postButton {
+  background-color: #0a68db;
   color: white;
-  width: 50%;
-  height: 30px;
+  padding: 8px 20px;
+
   border-radius: 10px;
   font-weight: bolder;
-  margin-right: 200px;
+  cursor: pointer;
 }
 
-#postButton:hover {
+.postButton:hover {
   background-color: red;
   color: black;
+}
+
+.Imagebtn {
+  padding: 5px 10px;
+  border: 1px solid rgb(40, 166, 216);
+  color: rgb(40, 166, 216);
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
 }
