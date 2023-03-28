@@ -7,6 +7,7 @@ import { getUserData } from "../../Utilities/user";
 import { getVendorData } from "../../Utilities/vendor";
 
 const Header = () => {
+
   const [data,setData] = useState({})
   const navigate = useNavigate()
   const logout =()=>{
@@ -40,11 +41,13 @@ const Header = () => {
       <div className="header-logout">
         <input className="side-menu" type="checkbox" id="side-menu" />
         <label className="header-logout-pop" htmlFor="side-menu">
+
           <p className="header-username">{data.name}</p>
           <img className="header-profile" src={profile} alt="profile pic" />
         </label>
         <div className="header-profile-display">
           <img className="header-profile-img" src={profile} alt="Profile-img" />
+
           <p className="header-profile-name">{data.name}</p>
           <button onClick={logout} className="header-profile-logout">Logout</button>
         </div>

@@ -5,7 +5,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { removeProposal } from "../../Utilities/proposal";
 
-
 const ProposalList = ({
   name,
   place,
@@ -14,8 +13,9 @@ const ProposalList = ({
   eventType,
   budget,
   events,
-  _id
+  _id,
 }) => {
+
 const [data,setData] = useState("")
   const handle = async (id) => {
     try {
@@ -31,8 +31,12 @@ const [data,setData] = useState("")
     
   },[data])
   const MAX_LENGTH = 200;
+  const data = () => {
+    console.log(events);
+  };
   return (
     <>
+
     {events.length && <div className="ProposalList">
       <div className="proposalList-head">{name}</div>
       <p className="proposalList-desc">

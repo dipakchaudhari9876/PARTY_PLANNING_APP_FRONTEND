@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { proposalData } from '../../data'
 import { getProposalData, singleProposal } from '../../Utilities/proposal'
@@ -34,10 +35,11 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className='Home'>
-        <img className='Home-headImg' src={HeadImg} alt="head" />
+      <div className="Home">
+        <img className="Home-headImg" src={HeadImg} alt="head" />
       </div>
       <div className="Home_proposalDisplay">
+
         {/* {seldata && <>
           <div className='Home_proposalDisplay_header'>Selected</div>
           <div className="Home_proposalDisplay_selected">
@@ -47,17 +49,15 @@ const Home = () => {
         </>} */}
         <div className='Home_proposalDisplay_header'>Proposals</div>
 
+
         <div className="Home_proposalDisplay_content">
           {proData.map((data) => {
-            return (
-              <ProDisplay key={data._id} {...data} />
-            )
+            return <ProDisplay key={data._id} {...data} />;
           })}
         </div>
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -10,6 +10,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getId } from "../Auth/authentication";
 
 const Proposal = () => {
+
   const navigate = useNavigate()
   const [proposal, setProposal] = useState([])
   useEffect(() => {
@@ -22,11 +23,13 @@ const Proposal = () => {
       try{
         const data =await getVendorProposal(id)
         if (data) {
-          setProposal([...data]) 
+          setProposal([...data]);
+          // console.log(data);
         }
-      }catch(err){
-        console.log(err)
+      } catch (err) {
+        console.log(err);
       }
+
     }
 
     getProposal(id)
@@ -50,7 +53,9 @@ const Proposal = () => {
           </div>
           <div className="proposal-head-right">
             <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon>
+
             <Link to={'/pro'} className="proposal-head-btn">CREATE</Link>
+
           </div>
         </div>
         {/* <ProposalList/> */}
