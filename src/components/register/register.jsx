@@ -88,13 +88,13 @@ const Register = () => {
             // console.log(data)
             if (vendor) {
               
-                console.log(vendor)
-                console.log(data)
+                // console.log(vendor)
+                // console.log(data)
                 
                 vendorRegister(data)
             }
             else {
-                console.log(data)
+                // console.log(data)
                 userRegister(data)
             }
         }
