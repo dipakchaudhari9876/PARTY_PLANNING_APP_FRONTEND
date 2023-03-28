@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../Auth/authentication";
 // import { vendorlogin } from "../../Utilities/vendor";
 // import { userlogin } from "../../Utilities/user";
+const url = process.env.REACT_APP_API
 
 const Signin = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Signin = () => {
             // vendorlogin(form)
             const vendorlogin =async(data)=>{
                 try{
-                    const loginData = await Axios.post("http://localhost:8080/api/vendor/login",data)
+                    const loginData = await Axios.post(`${url}/api/vendor/login`,data)
                     if (loginData) {
                         console.log(loginData.data)
                         localStorage.setItem("jwtoken", JSON.stringify(loginData.data.token))
@@ -38,7 +39,7 @@ const Signin = () => {
             // userlogin(form)
             const userlogin = async (data) => {
                 try {
-                    const loginData = await Axios.post("http://localhost:8080/api/user/login", data)
+                    const loginData = await Axios.post(`${url}/api/user/login`, data)
                     if (loginData) {
                         console.log(loginData.data)
                         localStorage.setItem("jwtoken", JSON.stringify(loginData.data.token))

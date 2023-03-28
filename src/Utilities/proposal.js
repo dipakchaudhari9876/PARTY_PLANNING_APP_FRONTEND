@@ -1,12 +1,13 @@
 import Axios from 'axios'
 import { getToken,getUser } from '../components/Auth/authentication'
+const url = process.env.REACT_APP_API;
 
 
 const getVendorProposal = async (id) => {
     try {
         const jwtoken = getToken()
         const userdata = getUser()
-        const vendorProposal = await Axios.get(`http://localhost:8080/api/proposal/findall/${id}`,{
+        const vendorProposal = await Axios.get(`${url}/api/proposal/findall/${id}`,{
             params:{jwtoken:jwtoken,data:userdata}
         })
         // console.log(vendorProposal.data)
@@ -22,7 +23,7 @@ const getVendorProposal = async (id) => {
 const sendProposal = async(data)=>{
     console.log(data)
     try {
-        const proposal = await Axios.post("http://localhost:8080/api/proposal/add",data)
+        const proposal = await Axios.post(`${url}/api/proposal/add`,data)
         return proposal.data
 
     } catch (err) {
@@ -33,7 +34,7 @@ const sendProposal = async(data)=>{
 
 const singleProposal = async(id)=>{
     try {
-        const singleProposal = await Axios.get(`http://localhost:8080/api/proposal/event/${id}`)
+        const singleProposal = await Axios.get(`${url}/api/proposal/event/${id}`)
         return singleProposal.data
         
     } catch (err) {
@@ -48,7 +49,7 @@ const getProposalData = async()=>{
         const jwtoken = getToken()
         const userdata = getUser()
         
-        const data = await Axios.get("http://localhost:8080/api/user/getallproposal",{
+        const data = await Axios.get(`${url}/api/user/getallproposal`,{
             params:{jwtoken:jwtoken,data:userdata}
         })
 
@@ -62,7 +63,7 @@ const getProposalData = async()=>{
 
 const removeProposal = async(id)=>{
     try{
-        const data = await Axios.delete(`http://localhost:8080/api/proposal/remove/${id}`)
+        const data = await Axios.delete(`${url}/api/proposal/remove/${id}`)
         if(data){
             return data.data
         }
