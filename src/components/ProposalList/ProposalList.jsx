@@ -15,65 +15,64 @@ const ProposalList = ({
   events,
   _id,
 }) => {
-
-const [data,setData] = useState("")
+  const [data, setData] = useState("");
   const handle = async (id) => {
     try {
-      const data = await removeProposal(id)
+      const data = await removeProposal(id);
       if (data) {
-        setData(data)
+        setData(data);
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
-  useEffect(()=>{
-    
-  },[data])
-  const MAX_LENGTH = 200;
-  const data = () => {
-    console.log(events);
   };
+  useEffect(() => {}, [data]);
+  const MAX_LENGTH = 200;
+  // const data = () => {
+  //   console.log(events);
+  // };
   return (
     <>
-
-    {events.length && <div className="ProposalList">
-      <div className="proposalList-head">{name}</div>
-      <p className="proposalList-desc">
-        {events.substring(0, MAX_LENGTH) + " ..."}
-      </p>
-      <div className="proposalList-info">
-        <ul className="proposalList-details">
-          <li className="prosalList-detail">
-            Event Type <span>{eventType}</span>
-          </li>
-          <li className="prosalList-detail">
-            Venue <span>{place}</span>
-          </li>
-          <li className="prosalList-detail">
-            From Date<span>{startDate}</span>
-          </li>
-          <li className="prosalList-detail">
-            From Date<span>{endDate}</span>
-          </li>
-          <li className="prosalList-detail">
-            Budget <span>{budget}</span>
-          </li>
-        </ul>
-        <div className="proposalList-btn">
-          <EditIcon
-            titleAccess="Edit"
-            className="proposalList-editbtn"
-          ></EditIcon>
-          <DeleteIcon
-            onClick={()=>{
-              handle(_id)}}
-            titleAccess="Delete"
-            className="proposalList-deletebtn"
-          ></DeleteIcon>
+      {events.length && (
+        <div className="ProposalList">
+          <div className="proposalList-head">{name}</div>
+          <p className="proposalList-desc">
+            {events.substring(0, MAX_LENGTH) + " ..."}
+          </p>
+          <div className="proposalList-info">
+            <ul className="proposalList-details">
+              <li className="prosalList-detail">
+                Event Type <span>{eventType}</span>
+              </li>
+              <li className="prosalList-detail">
+                Venue <span>{place}</span>
+              </li>
+              <li className="prosalList-detail">
+                From Date<span>{startDate}</span>
+              </li>
+              <li className="prosalList-detail">
+                From Date<span>{endDate}</span>
+              </li>
+              <li className="prosalList-detail">
+                Budget <span>{budget}</span>
+              </li>
+            </ul>
+            <div className="proposalList-btn">
+              <EditIcon
+                titleAccess="Edit"
+                className="proposalList-editbtn"
+              ></EditIcon>
+              <DeleteIcon
+                onClick={() => {
+                  handle(_id);
+                }}
+                titleAccess="Delete"
+                className="proposalList-deletebtn"
+              ></DeleteIcon>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>}
+      )}
     </>
   );
 };
