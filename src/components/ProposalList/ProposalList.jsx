@@ -16,21 +16,24 @@ const ProposalList = ({
   events,
   _id
 }) => {
-  const handle =async()=>{
-    try{
-      const data = await removeProposal(_id)
-      if(data){
-        console.log(data)
+const [data,setData] = useState("")
+  const handle = async (id) => {
+    try {
+      const data = await removeProposal(id)
+      if (data) {
+        setData(data)
       }
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
-    
-    
   }
+  useEffect(()=>{
+    
+  },[data])
   const MAX_LENGTH = 200;
   return (
-    <div className="ProposalList">
+    <>
+    {events.length && <div className="ProposalList">
       <div className="proposalList-head">{name}</div>
       <p className="proposalList-desc">
         {events.substring(0, MAX_LENGTH) + " ..."}
@@ -59,13 +62,15 @@ const ProposalList = ({
             className="proposalList-editbtn"
           ></EditIcon>
           <DeleteIcon
-          onClick={handle}
+            onClick={()=>{
+              handle(_id)}}
             titleAccess="Delete"
             className="proposalList-deletebtn"
           ></DeleteIcon>
         </div>
       </div>
-    </div>
+    </div>}
+    </>
   );
 };
 

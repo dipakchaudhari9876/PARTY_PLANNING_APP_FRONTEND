@@ -6,18 +6,21 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import ProposalList from "../ProposalList/ProposalList";
 import { proposalData } from "../../data";
 import { getVendorProposal } from "../../Utilities/proposal";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getId } from "../Auth/authentication";
 
 const Proposal = () => {
+  const navigate = useNavigate()
   const [proposal, setProposal] = useState([])
   useEffect(() => {
     const id = getId()
-    // console.log(id)
+    if(id === false){
+        navigate('/')  
+    }
 
-    const getProposal =async() => {
+    const getProposal =async(id) => {
       try{
-        const data =await getVendorProposal('641f2a93f8434008c555ac0d')
+        const data =await getVendorProposal(id)
         if (data) {
           setProposal([...data]) 
         }
@@ -25,12 +28,10 @@ const Proposal = () => {
         console.log(err)
       }
     }
-    getProposal()
+
+    getProposal(id)
   }, [])
 
-  const handle = ()=>{
-    console.log(proposal)
-  }
   return (
     <>
       <Header />
@@ -49,7 +50,7 @@ const Proposal = () => {
           </div>
           <div className="proposal-head-right">
             <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon>
-            <Link to={'/pro'} onClick={handle} className="proposal-head-btn">CREATE</Link>
+            <Link to={'/pro'} className="proposal-head-btn">CREATE</Link>
           </div>
         </div>
         {/* <ProposalList/> */}

@@ -100,7 +100,7 @@ const Event = () => {
           <div className="Event_header_name">proposals &lt; <span>{vdata.name}</span> </div>
           <div className="Event_header_btn_section">
             <Link onClick={handle} className='Event_header_btn'>Select</Link>
-            <Link to={'/'} className='Event_header_btn'>Home</Link>
+            <Link to={'/home'} className='Event_header_btn'>Home</Link>
           </div>
         </div>
         <div className="Event_Content">
