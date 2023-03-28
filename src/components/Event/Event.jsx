@@ -94,11 +94,32 @@ const Event = () => {
   return (
     <>
       <Header />
-      {Object.keys(proposal).length && (
-        <div className="Event">
-          <div className="Event_header">
-            <div className="Event_header_name">
-              proposals &lt; <span>{vdata.name}</span>{" "}
+      {Object.keys(proposal).length && <div className="Event">
+        <div className="Event_header">
+          <div className="Event_header_name">proposals &lt; <span>{vdata.name}</span> </div>
+          <div className="Event_header_btn_section">
+            <Link onClick={handle} className='Event_header_btn'>Select</Link>
+            <Link to={'/home'} className='Event_header_btn'>Home</Link>
+          </div>
+        </div>
+        <div className="Event_Content">
+          <div className="Event_Content_left">
+            <img className='Event_Content_left_img' src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5JTIwdmVudWV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60" alt="main" />
+            <div className="Event_Content_left_id">ID:
+              &nbsp;<span>{proposal._id}</span></div>
+
+            <div className="Event_Content_left_Info">
+              <div className="Event_Content_left_Info_name">Name:&nbsp;<b>{vdata.name}</b></div>
+              <div className="Event_Content_left_Info_email">Email:&nbsp;<b>{vdata.email}</b></div>
+
+              <div className="Event_Content_left_flex">
+                <div className="Event_Content_left_Info_startDate">Start Date:&nbsp;<b>{proposal.startDate}</b></div>
+                <div className="Event_Content_left_Info_endDate">End Date:&nbsp;<b>{proposal.endDate}</b></div>
+              </div>
+              <div className="Event_Content_left_flex">
+                <div className="Event_Content_left_detail">Event Type<b>{proposal.name}</b></div>
+                <div className="Event_Content_left_detail">Event Class<b>{proposal.eventType}</b></div>
+              </div>
             </div>
             <div className="Event_header_btn_section">
               <Link onClick={handle} className="Event_header_btn">

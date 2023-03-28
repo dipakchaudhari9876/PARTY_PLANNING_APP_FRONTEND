@@ -1,0 +1,149 @@
+.signinpagecontainer{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0px;
+    margin-top: 0px;
+    background-image: url("./../../Assets/Images/backgroundimage.png");
+    background-size: cover;
+    background-position: 0px;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.logo{
+    font: Open Sans, Bold;
+    letter-spacing: 1.28px;
+    color: #FFFFFF;
+    margin: 20px;
+    font-weight: 100px;
+    top: 10px;
+
+}
+
+.summary{
+    text-align: left;
+    font: Open Sans, Semibold;
+    letter-spacing: 3.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    font-size: 50px;
+    margin: 30px;
+
+}
+
+.mainbody{
+    display: flex;
+    justify-content: space-between;
+    margin :150px;
+    /* margin-right: 50px; */
+}
+.subbody{
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    height: 300px;
+    margin-top: 50px;
+}
+.phoneNo{
+    margin:10px;
+    height:30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    font: Open Sans;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+.password{
+    margin:10px;
+    height:30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    font: Open Sans;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+.headding{
+    font: normal normal normal 22px/30px Open Sans;
+    letter-spacing: 0.53px;
+    color: #1B2734;
+    opacity: 1;
+    padding: 0px 10px;
+}
+.mainbody{
+    display: flex;
+    margin: 70px;
+    justify-content: space-between;
+    padding-right:100px;
+}
+.buttoncolor{
+     /* display:flex;
+        align-items: center;
+        justify-content: column;
+        margin-bottom: 15px; */
+        color: #4E94F4;
+}
+.buttoncontainer{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 0px 10px;
+}
+.createaccountbutton{
+    color: #4E94F4;
+    background-color: white;
+    font-size: 15px;
+    border:none;
+    font: Open Sans, Semibold;
+    cursor:pointer;
+}
+.signinbutton{
+    font: Open Sans, Bold;
+    border-radius: 6px;
+    opacity: 1;
+    background-color: #4E94F4;
+    color:white;
+    border-style: none;
+    /* opacity: 1; */
+    cursor: pointer;
+    
+    padding: 5px;
+}
+.subbody>section>button{
+    width:50%;
+    margin-top: 0px;
+    height:30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-style: none;
+    border-right:1px solid #D1D1D1 ;
+    opacity: 1;
+    cursor:pointer;
+    border-top: white;
+}
+.subbody>section>:first-child{
+    border:1px solid #D1D1D1;
+    border-radius: 8px;
+}
+.options{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.forgotpassword{
+    padding-left: 15px;
+    font-size: 12px;
+}
+/* .formcontainer{
+    display: flex;
+    align-items: column;
+} */
+.inputs{
+    display: flex;
+    flex-direction: column;
+}

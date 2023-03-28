@@ -7,31 +7,33 @@ import { getUserData } from "../../Utilities/user";
 import { getVendorData } from "../../Utilities/vendor";
 
 const Header = () => {
-  const [data, setData] = useState({});
-  const navigate = useNavigate();
-  const logout = () => {
-    Logout();
-  };
-  // useEffect(()=>{
-  //   const id = getId()
-  //   const user = getUser()
-  //   const getDatas =async(id,user)=>{
-  //     if(user === "user"){
-  //       const temp = await getUserData(id)
-  //       if(temp){
-  //         setData({...temp})
-  //       }
-  //     }else{
-  //       const temp = await getVendorData(id)
-  //       if(temp){
-  //         setData({...temp})
-  //       }
-  //     }
 
-  //   }
+  const [data,setData] = useState({})
+  const navigate = useNavigate()
+  const logout =()=>{
+    Logout()
+    navigate('/')
+    // console.log(data)
+  }
+  useEffect(()=>{
+    const id = getId()
+    const user = getUser()
+    const getDatas =async(id,user)=>{
+      if(user === "user"){
+        const temp = await getUserData(id)
+        if(temp){
+          setData({...temp})
+        }
+      }else{
+        const temp = await getVendorData(id)
+        if(temp){
+          setData({...temp})
+        }
+      }
 
-  //   getDatas(id,user)
-  // },[])
+    }
+    getDatas(id,user)
+  },[])
   return (
     <div className="header">
       <h1 className="header-Logo">LOGO</h1>
@@ -39,18 +41,15 @@ const Header = () => {
       <div className="header-logout">
         <input className="side-menu" type="checkbox" id="side-menu" />
         <label className="header-logout-pop" htmlFor="side-menu">
-          <p className="header-username">Avijit Pateriya</p>
+
+          <p className="header-username">{data.name}</p>
           <img className="header-profile" src={profile} alt="profile pic" />
         </label>
         <div className="header-profile-display">
           <img className="header-profile-img" src={profile} alt="Profile-img" />
-          <p className="header-profile-name">Avijit Pateriya</p>
-          <p className="header-profile-id">
-            <span>User Id : </span>12345343256846
-          </p>
-          <button onClick={logout} className="header-profile-logout">
-            Logout
-          </button>
+
+          <p className="header-profile-name">{data.name}</p>
+          <button onClick={logout} className="header-profile-logout">Logout</button>
         </div>
       </div>
     </div>

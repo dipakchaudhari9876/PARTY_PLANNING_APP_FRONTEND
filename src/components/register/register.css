@@ -1,0 +1,122 @@
+.logo{
+    font: Open Sans, Bold;
+    letter-spacing: 1.28px;
+    color: #FFFFFF;
+    margin: 20px;
+    font-weight: 100px;
+    top: 10px;
+
+}
+.registractionpage{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0px;
+    margin-top: 0px;
+    background-image: url("./../../Assets/Images/backgroundimage.png");
+    background-size: cover;
+    background-position: 0px;
+    background-repeat: no-repeat;
+    color: white;
+    
+}
+.summary{
+    text-align: left;
+    font: Open Sans, Semibold;
+    letter-spacing: 3.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    font-size: 50px;
+    margin: 30px;
+
+}
+.registrationformsection{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    background-color: white;
+    width: 300px;
+    height: auto;
+    gap: 0px 20px;
+    border: 1px;
+    border-radius: 10px;
+    /* padding: 10px; */
+    padding:10px 30px;
+    padding-bottom: 20px;
+}
+.registrationformsection>input{
+    margin:10px;
+    height:30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    font: Open Sans;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    
+}
+.registrationformsection>h3{
+    font: normal normal normal 22px/30px Open Sans;
+    letter-spacing: 0.53px;
+    color: #1B2734;
+    opacity: 1;
+    padding: 0px 10px;
+}
+.mainpage{
+    display: flex;
+    margin: 70px;
+    justify-content: space-between;
+}
+.buttoncolor{
+  
+        /* display:flex;
+        align-items: center;
+        justify-content: column;
+        margin-bottom: 15px; */
+        color: #4E94F4;
+    
+}
+
+.buttonsection{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 0px 10px;
+
+}
+.buttonsection>button{
+    color: #4E94F4;
+    background-color: rgb(216, 17, 17);
+    font-size: 15px;
+    border:none;
+    font: Open Sans, Semibold;
+    cursor:pointer;
+    padding-left: 0px;
+}
+.registerbutton{
+    font: Open Sans, Bold;
+    border-radius: 6px;
+    opacity: 1;
+    /* background-color: #4E94F4; */
+    color : blue;
+    border-style: none;
+    /* opacity: 1; */
+    cursor: pointer;
+    
+    padding: 5px;
+}
+.registrationformsection>section:first-child{
+    border:1px solid #D1D1D1;
+    border-radius: 8px;
+}
+.registrationformsection>section>button{
+    width:50%;
+    margin-top: 0px;
+    height:30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-style: none;
+    border-right:1px solid #D1D1D1 ;
+    opacity: 1;
+    cursor:pointer;
+    border-top: white;
+}
