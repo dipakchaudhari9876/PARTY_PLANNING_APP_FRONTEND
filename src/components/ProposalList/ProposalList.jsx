@@ -3,6 +3,7 @@ import "./proposalList.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import { removeProposal } from "../../Utilities/proposal";
 
 
 const ProposalList = ({
@@ -13,13 +14,24 @@ const ProposalList = ({
   eventType,
   budget,
   events,
+  _id
 }) => {
+  const handle =async()=>{
+    try{
+      const data = await removeProposal(_id)
+      if(data){
+        console.log(data)
+      }
+    }catch(err){
+      console.log(err)
+    }
+    
+    
+  }
   const MAX_LENGTH = 200;
   return (
     <div className="ProposalList">
-    <Link to={'/event'}>
       <div className="proposalList-head">{name}</div>
-      </Link>
       <p className="proposalList-desc">
         {events.substring(0, MAX_LENGTH) + " ..."}
       </p>
@@ -47,6 +59,7 @@ const ProposalList = ({
             className="proposalList-editbtn"
           ></EditIcon>
           <DeleteIcon
+          onClick={handle}
             titleAccess="Delete"
             className="proposalList-deletebtn"
           ></DeleteIcon>

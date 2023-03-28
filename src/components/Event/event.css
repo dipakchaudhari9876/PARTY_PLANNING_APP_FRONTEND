@@ -20,10 +20,18 @@ b{
 
 .Event_header_btn {
     padding: 8px 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
     border: 3px solid rgb(25, 202, 238);
     border-radius: 5px;
     outline: none;
     cursor: pointer;
+
+}
+
+.Event_header_btn:first-child {
+    margin-right: 10px;
 
 }
 

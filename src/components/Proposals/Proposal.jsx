@@ -7,10 +7,13 @@ import ProposalList from "../ProposalList/ProposalList";
 import { proposalData } from "../../data";
 import { getVendorProposal } from "../../Utilities/proposal";
 import { Link } from "react-router-dom";
+import { getId } from "../Auth/authentication";
 
 const Proposal = () => {
   const [proposal, setProposal] = useState([])
   useEffect(() => {
+    const id = getId()
+    // console.log(id)
 
     const getProposal =async() => {
       try{
