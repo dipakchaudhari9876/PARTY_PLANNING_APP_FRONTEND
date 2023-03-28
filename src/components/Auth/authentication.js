@@ -9,7 +9,7 @@ const getToken =()=>{
 
 const getUser = ()=>{
     if(localStorage.getItem('data')){
-        return JSON.parse(localStorage.getItem('data'));
+        return (localStorage.getItem('data'));
     }
     else{
         return false;

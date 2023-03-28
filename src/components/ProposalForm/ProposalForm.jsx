@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./proposalform.css";
 import { imgUpload } from "../../Utilities/imageUpload";
 import CloseIcon from "@mui/icons-material/Close";
@@ -21,7 +21,7 @@ const ProposalForm = () => {
     startDate: "",
     endDate: "",
     description: "",
-    contacts: [],
+    contacts: [{contact:'9808764351'},{contact:'9808764351'}],
     food: "",
     events: "",
     images: [],
@@ -52,19 +52,26 @@ const ProposalForm = () => {
   const formSubmitHandler = async(e) => {
     e.preventDefault();
     const vid = getId()
-    // console.log({...formData,vendorId:'641f2a93f8434008c555ac0d'});
-    // try{
-    //   const data = await sendProposal({formData,vendorId:vid})
-    //   if(data){
-    //     console.log(data)
-          // navigate('/proposal')
-    //   }
+    console.log({...formData,vendorId:vid});
+    try{
+      const data = await sendProposal({...formData,vendorId:vid})
+      if(data){
+        console.log('load')
+        console.log(data)
+          navigate('/proposal')
+      }
 
-    // }catch(err){
-    //   console.log(err)
-    // }
+    }catch(err){
+      console.log(err)
+    }
 
   };
+  useEffect(()=>{
+    const vid = getId()
+    if(vid === false){
+      navigate('/')
+    }
+  },[])
   return (
     <div className="proposalForm_cont">
       <div className="ProposalForm">
@@ -204,15 +211,15 @@ const ProposalForm = () => {
                     className="form_contact"
                     type="text"
                     id="contact1"
-                    onChange={(e) => {
-                      setFormData({
-                        ...formData,
-                        contacts: [
-                          ...formData.contacts,
-                          { contact: e.target.value },
-                        ],
-                      });
-                    }}
+                    // onChange={(e) => {
+                    //   setFormData({
+                    //     ...formData,
+                    //     contacts: [
+                    //       ...formData.contacts,
+                    //       { contact: e.target.value },
+                    //     ],
+                    //   });
+                    // }}
                   />
                 </div>
                 <div className="form_individual">
@@ -221,15 +228,15 @@ const ProposalForm = () => {
                     className="form_contact"
                     type="text"
                     id="contact2"
-                    onChange={(e) => {
-                      setFormData({
-                        ...formData,
-                        contacts: [
-                          ...formData.contacts,
-                          { contact: e.target.value },
-                        ],
-                      });
-                    }}
+                    // onChange={(e) => {
+                    //   setFormData({
+                    //     ...formData,
+                    //     contacts: [
+                    //       ...formData.contacts,
+                    //       { contact: e.target.value },
+                    //     ],
+                    //   });
+                    // }}
                   />
                 </div>
               </div>

@@ -1,8 +1,14 @@
 import Axios from 'axios'
+import { getToken,getUser } from '../components/Auth/authentication'
+
 
 const getVendorProposal = async (id) => {
     try {
-        const vendorProposal = await Axios.get(`http://localhost:8080/api/proposal/findall/${id}`)
+        const jwtoken = getToken()
+        const userdata = getUser()
+        const vendorProposal = await Axios.get(`http://localhost:8080/api/proposal/findall/${id}`,{
+            params:{jwtoken:jwtoken,data:userdata}
+        })
         // console.log(vendorProposal.data)
         return vendorProposal.data
 
@@ -14,6 +20,7 @@ const getVendorProposal = async (id) => {
 }
 
 const sendProposal = async(data)=>{
+    console.log(data)
     try {
         const proposal = await Axios.post("http://localhost:8080/api/proposal/add",data)
         return proposal.data
@@ -28,7 +35,7 @@ const singleProposal = async(id)=>{
     try {
         const singleProposal = await Axios.get(`http://localhost:8080/api/proposal/event/${id}`)
         return singleProposal.data
-
+        
     } catch (err) {
         console.log(err)
         return err.response.data.error
@@ -36,9 +43,13 @@ const singleProposal = async(id)=>{
 }
 
 const getProposalData = async()=>{
+    
     try{
+        const jwtoken = getToken()
+        const userdata = getUser()
+        
         const data = await Axios.get("http://localhost:8080/api/user/getallproposal",{
-            params:{jwtoken:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWYxYTViZmE4YTJmZDMxZmJlYmM2NSIsImlhdCI6MTY3OTk1NDg2NywiZXhwIjoxNjgwMDQxMjY3fQ.xJGE-2LHMw6Eg7-Dx6EKfnvq2L_Awv7GCJlmb0Tc2Es",data:"user"}
+            params:{jwtoken:jwtoken,data:userdata}
         })
 
         return (data.data)
@@ -51,7 +62,7 @@ const getProposalData = async()=>{
 
 const removeProposal = async(id)=>{
     try{
-        const data = await Axios.get(`http://localhost:8080/api/proposal/remove/${id}`)
+        const data = await Axios.delete(`http://localhost:8080/api/proposal/remove/${id}`)
         if(data){
             return data.data
         }

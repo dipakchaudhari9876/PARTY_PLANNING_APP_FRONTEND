@@ -12,4 +12,26 @@ const getVendorData = async (id) => {
 
 }
 
-export {getVendorData}
+const vendorRegister =async(data)=>{
+    // const navigate = useNavigate()
+    try{
+        const vedReg = await Axios.post("http://localhost:8080/api/vendor/register",data)
+        console.log(vedReg.data)
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
+const vendorlogin =async(data)=>{
+    try{
+        const loginData = await Axios.post("http://localhost:8080/api/vendor/login",data)
+        console.log(loginData.data)
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+export {getVendorData,vendorlogin,vendorRegister}
