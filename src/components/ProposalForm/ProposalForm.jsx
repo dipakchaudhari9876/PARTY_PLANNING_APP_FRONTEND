@@ -4,9 +4,11 @@ import { imgUpload } from "../../Utilities/imageUpload";
 import CloseIcon from "@mui/icons-material/Close";
 import Img from "./Img";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { sendProposal } from "../../Utilities/proposal";
+import { getId } from "../Auth/authentication";
 const ProposalForm = () => {
+  const navigate = useNavigate()
   const [file, setFile] = useState([]);
   const [imgdata, setImgdata] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -49,16 +51,19 @@ const ProposalForm = () => {
 
   const formSubmitHandler = async(e) => {
     e.preventDefault();
+    const vid = getId()
     // console.log({...formData,vendorId:'641f2a93f8434008c555ac0d'});
     // try{
-    //   const data = await sendProposal(formData)
+    //   const data = await sendProposal({formData,vendorId:vid})
     //   if(data){
     //     console.log(data)
+          // navigate('/proposal')
     //   }
 
     // }catch(err){
     //   console.log(err)
     // }
+
   };
   return (
     <div className="proposalForm_cont">

@@ -1,19 +1,21 @@
 import React from 'react'
 import './prodisplay.css'
+import {Link} from 'react-router-dom'
 
-const ProDisplay = ({name,location,price}) => {
+const ProDisplay = ({_id,name,place,budget,images}) => {
+  const imgSrc = images[0]
   
   return (
-    <div className="ProDisplay">
-        <img className='ProDisplay_img' src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5JTIwdmVudWV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60" alt="display" />
+    <Link to={`/event/${_id}`} className="ProDisplay">
+        <img className='ProDisplay_img' src={imgSrc.url} alt="display" />
 
         <div className="ProDisplay_content">
           <div className="ProDisplay_content_name">{name}</div>
-          <div className="ProDisplay_content_price">{price}/-</div>
-          <div className="ProDisplay_content_place">{location}</div>
+          <div className="ProDisplay_content_price">{budget}/-</div>
+          <div className="ProDisplay_content_place">{place}</div>
         </div>
 
-    </div>
+    </Link>
   )
 }
 
