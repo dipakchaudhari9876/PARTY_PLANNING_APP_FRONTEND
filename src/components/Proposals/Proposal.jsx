@@ -10,27 +10,28 @@ import { Link } from "react-router-dom";
 import { getId } from "../Auth/authentication";
 
 const Proposal = () => {
-  const [proposal, setProposal] = useState([])
+  const [proposal, setProposal] = useState([]);
   useEffect(() => {
-    const id = getId()
+    const id = getId();
     // console.log(id)
 
-    const getProposal =async() => {
-      try{
-        const data =await getVendorProposal('641f2a93f8434008c555ac0d')
+    const getProposal = async () => {
+      try {
+        const data = await getVendorProposal("641f2a93f8434008c555ac0d");
         if (data) {
-          setProposal([...data]) 
+          setProposal([...data]);
+          // console.log(data);
         }
-      }catch(err){
-        console.log(err)
+      } catch (err) {
+        console.log(err);
       }
-    }
-    getProposal()
-  }, [])
+    };
+    getProposal();
+  }, []);
 
-  const handle = ()=>{
-    console.log(proposal)
-  }
+  const handle = () => {
+    console.log(proposal);
+  };
   return (
     <>
       <Header />
@@ -49,7 +50,9 @@ const Proposal = () => {
           </div>
           <div className="proposal-head-right">
             <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon>
-            <Link to={'/pro'} onClick={handle} className="proposal-head-btn">CREATE</Link>
+            <Link to={"/pro"} onClick={handle} className="proposal-head-btn">
+              CREATE
+            </Link>
           </div>
         </div>
         {/* <ProposalList/> */}

@@ -7,11 +7,11 @@ import { getUserData } from "../../Utilities/user";
 import { getVendorData } from "../../Utilities/vendor";
 
 const Header = () => {
-  const [data,setData] = useState({})
-  const navigate = useNavigate()
-  const logout =()=>{
-    Logout()
-  }
+  const [data, setData] = useState({});
+  const navigate = useNavigate();
+  const logout = () => {
+    Logout();
+  };
   // useEffect(()=>{
   //   const id = getId()
   //   const user = getUser()
@@ -29,7 +29,7 @@ const Header = () => {
   //     }
 
   //   }
-    
+
   //   getDatas(id,user)
   // },[])
   return (
@@ -38,7 +38,7 @@ const Header = () => {
 
       <div className="header-logout">
         <input className="side-menu" type="checkbox" id="side-menu" />
-        <label className="header-logout-pop" for="side-menu">
+        <label className="header-logout-pop" htmlFor="side-menu">
           <p className="header-username">Avijit Pateriya</p>
           <img className="header-profile" src={profile} alt="profile pic" />
         </label>
@@ -48,7 +48,9 @@ const Header = () => {
           <p className="header-profile-id">
             <span>User Id : </span>12345343256846
           </p>
-          <button onClick={logout} className="header-profile-logout">Logout</button>
+          <button onClick={logout} className="header-profile-logout">
+            Logout
+          </button>
         </div>
       </div>
     </div>
