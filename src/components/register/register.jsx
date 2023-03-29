@@ -1,104 +1,79 @@
 import { useState } from "react"
 import "./register.css";
 import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-import { vendorRegister } from "../../Utilities/vendor";
-import { userRegister } from "../../Utilities/user";
+const url = process.env.REACT_APP_API
 
 
 const Register = () => {
-
-    const [form, setform] = useState({ Name: "", email: "", phoneNo: "", password: "", confirmPassword: "" })
-    // console.log(form)
+    const navigate = useNavigate()
     const [vendor, setVendor] = useState(false);
-    const [error, seterror] = useState({
-        Name: { isValid: true, message: "" }, email: { isValid: true, message: "" }, phoneNo: { isValid: true, message: "" },
-        password: { isValid: true, message: "" }
-    })
-    // const [confirmPassword,setconfirmPassword]=useState({isValid:false,message:""});
-    const navigate = useNavigate();
-    //Validation Part
-    const errorhandler = (type) => {
-        switch (type) {
-            case "Name": {
-                if (form.Name.length >= 0 && form.Name.length <= 10) {
+    const [error, setError] = useState("")
 
-                    seterror({ ...error, Name: { isValid: true, message: "" } });
-                }
-                else {
-                    setform({ ...form, userName: "" });
-                    seterror({ ...error, Name: { isValid: false, message: "The number of charecters should be between 0 and 10 " } })
-                }
-                break;
-            }
-            case "email": {
-                let regexEmail = /^\w+([.-]?\w+)*@gmail\.com$/g;
-                if (regexEmail.test(form.email)) {
-                    seterror({ ...error, email: { isValid: true, message: "" } });
-                }
-                else {
-                    setform({ ...form, email: "" });
-                    seterror({ ...error, email: { isValid: false, message: "please give a valid Email before @ only . and - are allowed" } })
-                }
-                break;
-            }
-            case "phoneNo": {
-                let regexPhoneNo = /^[6,7,8,9]/g;
-                if (regexPhoneNo.test(form.phoneNo) && form.phoneNo.toString().length === 10) {
-                    seterror({ ...error, phone: { isValid: true, message: "" } });
-                }
-                else {
-                    setform({ ...form, phone: "" });
-                    seterror({ ...error, phone: { isValid: false, message: "please give a valid 10 digit mobile number" } })
-                }
-                break
-            }
-            case "password": {
-                if (form.password.length >= 5 && form.password.length <= 12) {
-                    seterror({ ...error, password: { isValid: true, message: "" } });
-                }
-                else {
-                    setform({ ...form, password: "" });
-                    seterror({ ...error, password: { isValid: false, message: "The number of charecters should be between 5 and 12 " } })
-                }
-                return;
-            }
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [password, setPassword] = useState("")
+    const [Cpassword, setCpassword] = useState("")
 
-            default: {
-                setform({ ...form });
-                break;
-            }
+    const check = () => {
+        if (!name.length || !email.length || !password.length || !Cpassword.length || !phone.length) {
+            setError("Fill all the details")
         }
+        else if (!(/^[a-z0-9\.]{1,}@gmail\.com$/g).test(email)) {
+            setError("Email is Invalid")
+        }
+        else if (phone.length !== 10) {
+            setError("Phone Number is invalid")
+        } else if (password !== Cpassword) {
+            setError("Passwords does not matches")
+        } else {
+            setError("")
+        }
+
     }
 
     //REgister handler
-    const Registerhandler =  (e) => {
+    const Registerhandler = (e) => {
+
         e.preventDefault();
-        if (form.Name.length > 0 && form.phoneNo > 0 && form.email.length > 0 && form.password.length > 0 && form.confirmPassword.length > 0) {
-            const data = {
-                name: form.Name,
-                phone: form.phoneNo,
-                email: form.email,
-                password: form.password,
-                Cpassword: form.confirmPassword
-            }
-            setform({Name :"", email: "", phoneNo:"",password:"",confirmPassword:""})
-            // console.log(vendor)
-            // console.log(data)
+        if ((name.length || email.length || password.length || Cpassword.length || phone.length) > 0 && error.length === 0) {
+            const data = { name, email, phone, password, Cpassword }
             if (vendor) {
-              
-                // console.log(vendor)
-                // console.log(data)
-                
-                vendorRegister(data)
+
+                const vendorReg = async () => {
+
+                    try {
+                        const vedReg = await axios.post(`${url}/api/vendor/register`, data)
+                        alert(vedReg.data.message)
+                        navigate("/")
+                        
+
+                    } catch (err) {
+                        setError(err.response.data.error)
+                    }
+
+                }
+                vendorReg()
             }
             else {
-                // console.log(data)
-                userRegister(data)
+                const userReg = async () => {
+                    try {
+                        const userReg = await axios.post(`${url}/api/user/register`, data)
+                        alert(userReg.data.message)
+                        navigate("/")
+
+                    } catch (err) {
+                        setError(err.response.data.error)
+                    }
+
+                }
+                userReg()
             }
         }
-       
+
+
     }
     const dataBaseToggleHandler = (e) => {
         e.preventDefault();
@@ -122,31 +97,32 @@ const Register = () => {
                     <section className="registrationform">
                         <form className="registrationformsection">
                             <section>
-                                <button className={vendor ? "buttoncolor" : null} onClick={dataBaseToggleHandler}>vendor</button>
-                                <button className={vendor ? null : "buttoncolor"} onClick={dataBaseToggleHandler}>User</button>
+                                <button className={vendor ? "buttoncolor" : "btn"} onClick={dataBaseToggleHandler}>Vendor</button>
+                                <button className={vendor ? "btn" : "buttoncolor"} onClick={dataBaseToggleHandler}>User</button>
                             </section>
-                            <h3 >Register in your Account</h3>
+                            <div className="form-Header">Register</div>
                             {/* Name----->html-ok, css--> */}
-                            <input className="Name" type="text" placeholder="Name" onChange={(e) => { setform({ ...form, Name: e.target.value }) }} onBlur={() => { errorhandler("Name") }} value={form.Name} />
-                            {error.Name.isValid ? null : <p style={{ color: "red", marginLeft: "20px" }}>{error.Name.message}</p>}
+                            <input type="text" className="input" placeholder="Name" onChange={(e) => { setName(e.target.value) }} onBlur={() => { check() }} value={name} />
                             {/* Email */}
-                            <input className="email" type="email" placeholder="Email" onChange={(e) => { setform({ ...form, email: e.target.value }) }} onBlur={() => { errorhandler("email") }} value={form.email} />
-                            {error.email.isValid ? null : <div style={{ color: "red", marginLeft: "20px" }}>{error.email.message}</div>}
+                            <input type="email" className="input" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} onBlur={() => { check() }} value={email} />
                             {/* phoneNo */}
-                            <input className="phoneNo" type="text" placeholder="Contact" onChange={(e) => { setform({ ...form, phoneNo: e.target.value }) }} onBlur={() => { errorhandler("phoneNo") }} value={form.phoneNo} />
-                            {error.phoneNo.isValid ? null : <div style={{ color: "red", marginLeft: "20px" }}>{error.phoneNo.message}</div>}
+
+                            <input type="text" className="input" placeholder="Contact" onChange={(e) => { setPhone(e.target.value) }} onBlur={() => { check() }} value={phone} />
 
                             {/* Password */}
-                            <input className="password" type="password" placeholder="Password" onChange={(e) => { setform({ ...form, password: e.target.value }) }} onBlur={() => { errorhandler("password") }} value={form.password} />
-                            {error.password.isValid ? null : <div style={{ color: "red", marginLeft: "20px" }}>{error.password.message}</div>}
+
+                            <input type="password" className="input" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} onBlur={() => { check() }} value={password} />
                             {/* Confirm password */}
-                            <input className="confirmpassword" type="password" placeholder="ConfirmPassword" onChange={(e) => { setform({ ...form, confirmPassword: e.target.value }) }} value={form.confirmPassword} />
-                            {/* {confirmPassword.isValid?null:<div style={{color:"red",marginLeft:"20px"}}>{confirmPassword.message}</div>} */}
-                            {/* footer button section */}
+
+                            <input type="password" className="input" placeholder="Confirm Password" onChange={(e) => { setCpassword(e.target.value) }} onMouseLeave={() => { check() }} value={Cpassword} />
+
+
+
+                            {error && <div style={{ textAlign: "center", fontSize: "15px", color: "red" }}>{error}</div>}
                             <section className="buttonsection">
-                                <button className="signinbutton" onClick={() => { navigate("/") }}>Signin</button>
+                                <button className="register-signinbutton" onClick={() => { navigate("/") }}>Signin</button>
                                 <section >
-                                    <button className="registerbutton" onClick={Registerhandler}>Register</button>
+                                    <button className="register-registerbutton" onClick={Registerhandler}>Register</button>
                                 </section>
                             </section>
                         </form>

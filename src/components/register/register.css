@@ -7,6 +7,11 @@
     top: 10px;
 
 }
+.input {
+    padding-left:5px ;
+    border: none;
+    outline: none;
+}
 .registractionpage{
     width:100vw;
     height:100vh;
@@ -45,6 +50,13 @@
     padding:10px 30px;
     padding-bottom: 20px;
 }
+
+.form-Header{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10px;
+}
 .registrationformsection>input{
     margin:10px;
     height:30px;
@@ -66,17 +78,10 @@
     margin: 70px;
     justify-content: space-between;
 }
-.buttoncolor{
-  
-        /* display:flex;
-        align-items: center;
-        justify-content: column;
-        margin-bottom: 15px; */
-        color: #4E94F4;
-    
-}
+
 
 .buttonsection{
+    margin-top: 10px;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -84,39 +89,25 @@
     padding: 0px 10px;
 
 }
-.buttonsection>button{
-    color: #4E94F4;
-    background-color: rgb(216, 17, 17);
+
+.register-registerbutton{
+    padding: 5px 8px;
+    border: none;
+    outline: none;
+    background-color: rgb(26, 128, 196);
+    color: white;
     font-size: 15px;
-    border:none;
-    font: Open Sans, Semibold;
-    cursor:pointer;
-    padding-left: 0px;
-}
-.registerbutton{
-    font: Open Sans, Bold;
-    border-radius: 6px;
-    opacity: 1;
-    /* background-color: #4E94F4; */
-    color : blue;
-    border-style: none;
-    /* opacity: 1; */
     cursor: pointer;
-    
-    padding: 5px;
+    border-radius: 5px;
+
 }
-.registrationformsection>section:first-child{
-    border:1px solid #D1D1D1;
-    border-radius: 8px;
+
+.register-signinbutton{
+    border: none;
+    outline: none;
+    background-color: white;
+    color: rgb(16, 126, 210);
+    font-size: 15px;
+    cursor: pointer;
 }
-.registrationformsection>section>button{
-    width:50%;
-    margin-top: 0px;
-    height:30px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-style: none;
-    border-right:1px solid #D1D1D1 ;
-    opacity: 1;
-    cursor:pointer;
-    border-top: white;
-}
+

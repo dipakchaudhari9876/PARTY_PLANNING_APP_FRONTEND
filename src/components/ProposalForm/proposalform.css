@@ -25,12 +25,13 @@
   box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   position: relative;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  z-index: 1;
 }
 
 label {
   margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .ProposalForm_head {
@@ -51,11 +52,14 @@ label {
 
 .form_eventName {
   height: 30px;
+  padding-left: 5px;
 }
 
 .filter-select {
   width: 129px;
   height: 30px;
+  /* outline: none; */
+  padding-left:5px ;
 }
 
 .form_contact {
@@ -82,6 +86,8 @@ label {
 
 .proposalForm_desc {
   height: 70px;
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .proposalForm_right {
@@ -111,7 +117,9 @@ label {
 }
 
 .proposalForm_desc_right {
-  height: 97px;
+  height: 110px;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .space {
@@ -127,6 +135,7 @@ label {
 
 textarea {
   resize: none;
+  padding: 5px;
 }
 
 .postButton {
@@ -139,10 +148,10 @@ textarea {
   cursor: pointer;
 }
 
-.postButton:hover {
+/* .postButton:hover {
   background-color: red;
   color: black;
-}
+} */
 
 .Imagebtn {
   padding: 5px 10px;
@@ -151,4 +160,10 @@ textarea {
   font-size: 12px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.form-error{
+  align-items: center;
+  color: red;
+  margin-bottom: 10px;
 }

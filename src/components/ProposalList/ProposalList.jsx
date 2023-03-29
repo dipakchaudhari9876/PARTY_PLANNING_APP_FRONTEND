@@ -21,6 +21,7 @@ const ProposalList = ({
       const data = await removeProposal(id);
       if (data) {
         setData(data);
+        window.location.reload()
       }
     } catch (err) {
       console.log(err);

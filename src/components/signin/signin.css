@@ -1,8 +1,8 @@
-.signinpagecontainer{
-    width:100vw;
-    height:100vh;
-    position:absolute;
-    top:0px;
+.signinpagecontainer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
     margin-top: 0px;
     background-image: url("./../../Assets/Images/backgroundimage.png");
     background-size: cover;
@@ -11,7 +11,7 @@
     color: white;
 }
 
-.logo{
+.logo {
     font: Open Sans, Bold;
     letter-spacing: 1.28px;
     color: #FFFFFF;
@@ -21,7 +21,7 @@
 
 }
 
-.summary{
+.summary {
     text-align: left;
     font: Open Sans, Semibold;
     letter-spacing: 3.5px;
@@ -33,117 +33,139 @@
 
 }
 
-.mainbody{
+.mainbody {
     display: flex;
     justify-content: space-between;
-    margin :150px;
+    margin: 150px;
     /* margin-right: 50px; */
 }
-.subbody{
+
+.subbody {
     background-color: white;
     color: black;
     border-radius: 8px;
     justify-content: center;
-    padding: 10px;
-    padding-top: 10px;
-    padding-bottom: 0px;
-    height: 300px;
+    padding: 20px;
+    
+    height: fit-content;
     margin-top: 50px;
 }
-.phoneNo{
-    margin:10px;
-    height:30px;
-    border: 1px solid #D1D1D1;
-    border-radius: 4px;
-    font: Open Sans;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-}
-.password{
-    margin:10px;
-    height:30px;
+
+.phoneNo {
+    margin: 10px;
+    height: 30px;
     border: 1px solid #D1D1D1;
     border-radius: 4px;
     font: Open Sans;
     background: #FFFFFF 0% 0% no-repeat padding-box;
 }
 
-.headding{
+.password {
+    margin: 10px;
+    height: 30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    font: Open Sans;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+.headding {
     font: normal normal normal 22px/30px Open Sans;
     letter-spacing: 0.53px;
     color: #1B2734;
     opacity: 1;
     padding: 0px 10px;
 }
-.mainbody{
+
+.mainbody {
     display: flex;
     margin: 70px;
     justify-content: space-between;
-    padding-right:100px;
+    padding-right: 100px;
 }
-.buttoncolor{
-     /* display:flex;
-        align-items: center;
-        justify-content: column;
-        margin-bottom: 15px; */
-        color: #4E94F4;
+
+.buttoncolor {
+    transform: scale(1.2);
+    color: #4E94F4;
+    width: 50%;
+    margin-top: 0px;
+    height: 30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    cursor: pointer;
+    border: white;
 }
-.buttoncontainer{
-    display:flex;
+
+.btn {
+    /* color: #4E94F4; */
+    width: 50%;
+    margin-top: 0px;
+    height: 30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    cursor: pointer;
+    border: white;
+}
+
+.buttoncontainer {
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin: 10px 0px;
     padding: 0px 10px;
 }
-.createaccountbutton{
+.signin-input {
+    padding-left:5px ;
+    border-radius: 3px;
+    border-color: rgb(167, 163, 163);
+    /* outline: none; */
+    margin: 10px 0px;
+    height: 31px;
+    width: 210px;
+}
+
+.createaccountbutton {
     color: #4E94F4;
     background-color: white;
     font-size: 15px;
-    border:none;
+    border: none;
     font: Open Sans, Semibold;
-    cursor:pointer;
+    cursor: pointer;
 }
-.signinbutton{
+
+.signinbutton {
     font: Open Sans, Bold;
+    font-size: 16px;
     border-radius: 6px;
     opacity: 1;
     background-color: #4E94F4;
-    color:white;
+    color: white;
     border-style: none;
     /* opacity: 1; */
     cursor: pointer;
-    
-    padding: 5px;
+
+    padding: 5px 10px;
 }
-.subbody>section>button{
-    width:50%;
-    margin-top: 0px;
-    height:30px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-style: none;
-    border-right:1px solid #D1D1D1 ;
-    opacity: 1;
-    cursor:pointer;
-    border-top: white;
-}
-.subbody>section>:first-child{
-    border:1px solid #D1D1D1;
-    border-radius: 8px;
-}
-.options{
+
+
+.options {
     display: flex;
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
 }
-.forgotpassword{
-    padding-left: 15px;
+
+.forgotpassword {
+    text-align: right;
     font-size: 12px;
+    color: rgb(11, 110, 138);
 }
+
 /* .formcontainer{
     display: flex;
     align-items: column;
 } */
-.inputs{
+.inputs {
     display: flex;
     flex-direction: column;
 }

@@ -4,33 +4,34 @@ import Axios from 'axios'
 import "./signin.css"
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../Auth/authentication";
-// import { vendorlogin } from "../../Utilities/vendor";
-// import { userlogin } from "../../Utilities/user";
 const url = process.env.REACT_APP_API
 
 const Signin = () => {
+    const [error,setError] = useState("")
     const navigate = useNavigate();
     const [form, setform] = useState({ data: "", password: "" })
     const [vendor, setVendor] = useState(false);
     const loginHandler = (e) => {
 
         e.preventDefault();
-        // console.log(vendor)
-        // console.log(form)
+        if(!form.data || !form.password){
+            setError('Fill all the details')
+            return 
+        }
+        
         if (vendor) {
-            // vendorlogin(form)
-            const vendorlogin =async(data)=>{
-                try{
-                    const loginData = await Axios.post(`${url}/api/vendor/login`,data)
+            
+            const vendorlogin = async (data) => {
+                try {
+                    const loginData = await Axios.post(`${url}/api/vendor/login`, data)
                     if (loginData) {
-                        console.log(loginData.data)
                         localStorage.setItem("jwtoken", JSON.stringify(loginData.data.token))
                         localStorage.setItem("data", 'vendor')
                         localStorage.setItem("userId", JSON.stringify(loginData.data._id))
                         navigate('/proposal')
                     }
-                }catch(err){
-                    console.log(err)
+                } catch (err) {
+                    setError(err.response.data.error)
                 }
             }
             vendorlogin(form)
@@ -41,7 +42,6 @@ const Signin = () => {
                 try {
                     const loginData = await Axios.post(`${url}/api/user/login`, data)
                     if (loginData) {
-                        console.log(loginData.data)
                         localStorage.setItem("jwtoken", JSON.stringify(loginData.data.token))
                         localStorage.setItem("data", 'user')
                         localStorage.setItem("userId", JSON.stringify(loginData.data._id))
@@ -49,7 +49,8 @@ const Signin = () => {
                     }
 
                 } catch (err) {
-                    console.log(err.response)
+                    console.log(err)
+                    setError(err.response.data.error)
                 }
             }
             userlogin(form)
@@ -60,22 +61,26 @@ const Signin = () => {
         e.preventDefault();
         if (vendor === true) {
             setVendor(false)
+            setError("")
+            setform({ data: "", password: "" })
         }
         else {
             setVendor(true);
+            setError("")
+            setform({ data: "", password: "" })
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         let user = getUser()
-        if(user){
-            if(user === "user"){
+        if (user) {
+            if (user === "user") {
                 navigate('/home')
-            }else{
+            } else {
                 navigate('/proposal')
             }
-        }    
-    },[])
+        }
+    }, [])
     return (
         <>
             <article className="signinpagecontainer">
@@ -85,22 +90,24 @@ const Signin = () => {
                         <p>TEXT WILL<br />BE DISPLAYED<br />HERE</p>
                     </section>
                     <section className="subbody">
+                        <section className="options">
+                            <button className={vendor ? "buttoncolor" : "btn"} onClick={dataBaseToggleHandler}>Vendor</button>
+                            <button className={vendor ? "btn" : "buttoncolor"} onClick={dataBaseToggleHandler}>User</button>
+                        </section>
                         <form className="formcontainer">
-                            <section className="options">
-                                <button className={vendor ? "buttoncolor" : null} onClick={dataBaseToggleHandler}>vendor</button>
-                                <button className={vendor ? null : "buttoncolor"} onClick={dataBaseToggleHandler}>User</button>
-                            </section>
-                            <h3 className="headding">Sign in your Account</h3>
+
+                        <div className="form-Header">Sign In</div>
                             <div className="inputs">
 
 
-                                <input className="phoneNo" placeholder="email/phone" onChange={(e) =>  setform({ ...form, data: e.target.value }) } value={form.data} />
+                                <input className="signin-input" placeholder="Email/Phone" onChange={(e) => setform({ ...form, data: e.target.value })} value={form.data} />
 
 
-                                <input className="password" placeholder="password" type="password" onChange={(e) =>setform({ ...form, password: e.target.value }) } value={form.password} />
+                                <input className="signin-input" placeholder="Password" type="password" onChange={(e) => setform({ ...form, password: e.target.value })} value={form.password} />
                             </div>
 
-                            <p className="forgotpassword">Forgot Password</p>
+                            <div className="forgotpassword">Forgot Password?</div>
+                            {error && <div style={{ textAlign: "center", fontSize: "15px", color: "red" }}>{error}</div>}
                             <section className="buttoncontainer">
 
                                 <button className="createaccountbutton" onClick={() => { navigate("/register") }}>Create Account</button>

@@ -16,10 +16,10 @@ function App() {
 
         <Route path="/register" element={<Register/>}/>
         <Route path="/" element={<Signin/>}/>
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/proposal" element={<Proposal/>}/>
-        <Route path="/event/:id" element={<Event/>}/>
-        <Route path="/pro" element={<ProposalForm/>}/>
+        <Route path="/home" element={<StrictRoute Child={Home}/> }/>
+        <Route path="/proposal" element={<StrictRoute Child={Proposal}/>}/>
+        <Route path="/event/:id" element={<StrictRoute Child={Event}/>}/>
+        <Route path="/pro" element={<StrictRoute Child={ProposalForm}/>}/>
       </Routes>
     </BrowserRouter>
     
