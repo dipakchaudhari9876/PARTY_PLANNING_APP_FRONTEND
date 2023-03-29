@@ -1,10 +1,14 @@
-const getToken = () => {
-  if (localStorage.getItem("jwtoken")) {
-    return JSON.parse(localStorage.getItem("jwtoken"));
-  } else {
-    return false;
+export const getToken = () =>{
+  if(typeof window == 'undefined'){
+      return false;
   }
-};
+  if(localStorage.getItem('jwtoken')){
+      return JSON.parse(localStorage.getItem('jwtoken'));
+  }
+  else{
+      return false;
+  }
+}
 
 const getUser = ()=>{
     if(localStorage.getItem('data')){
@@ -29,4 +33,4 @@ const Logout = () => {
   localStorage.removeItem("userId");
 };
 
-export { getId, getUser, getToken, Logout };
+export { getId, getUser, Logout };
