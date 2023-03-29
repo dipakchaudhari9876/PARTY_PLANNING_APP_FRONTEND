@@ -24,7 +24,6 @@ const Event = () => {
       try {
         const data = await singleProposal(id);
         if (data) {
-          console.log(data)
           setProposal({ ...data });
         }
         const vendorId = data.vendorId;

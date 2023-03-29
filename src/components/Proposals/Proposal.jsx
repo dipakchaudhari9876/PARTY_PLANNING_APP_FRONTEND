@@ -70,7 +70,7 @@ const Proposal = () => {
           <div className="proposal-head-right">
             <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon>
 
-            <Link to={'/pro'} className="proposal-head-btn">CREATE</Link>
+            <Link to={`/pro/${'create'}`} className="proposal-head-btn">CREATE</Link>
 
           </div>
         </div>

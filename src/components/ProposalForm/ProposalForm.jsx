@@ -4,12 +4,14 @@ import { imgUpload } from "../../Utilities/imageUpload";
 import CloseIcon from "@mui/icons-material/Close";
 import Img from "./Img";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { sendProposal } from "../../Utilities/proposal";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { sendProposal, singleProposal } from "../../Utilities/proposal";
 import { getId, getUser } from "../Auth/authentication";
 import Header from "../Header/Header";
+const url = process.env.REACT_APP_API
 
 const ProposalForm = () => {
+  const {id} = useParams()
   const [error, setError] = useState("")
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
@@ -25,8 +27,9 @@ const ProposalForm = () => {
   const [endDate, setEndDate] = useState("")
   const [food, setFood] = useState("")
   const [events, setEvents] = useState("")
-  const [contacts, setContacts] = useState({})
   const [description, setDescription] = useState("")
+  const [contact1,setContact1] = useState("")
+  const [contact2,setContact2] = useState("")
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -48,15 +51,52 @@ const ProposalForm = () => {
     }
   };
 
+  const setValues =async(id)=>{
+    try {
+      const data = await singleProposal(id);
+      if (data) {
+        setName(data.name)
+        setPlace(data.place)
+        setBudget(data.budget)
+        // setContacts([...data.contacts])
+        setDescription(data.description)
+        setEndDate(data.endDate)
+        setEventType(data.eventType)
+        setEvents(data.events)
+        setFood(data.food)
+        setProposalType(data.proposalType)
+        setStartDate(data.startDate)
+        setImgdata([...data.images])
+        setContact1(data.contacts[0].contact1)
+        setContact2(data.contacts[0].contact2)
+      }
+      
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(()=>{
+    const data = getUser()
+    if(data === 'user'){
+      navigate('/home')
+      
+    }
+    if(id !== 'create'){
+      setValues(id)
+    }
+  },[])
+
   const formSubmitHandler = async (e) => {
     e.preventDefault();
 
     const temp = { name, place, proposalType, eventType, budget, startDate, endDate, description, food, events }
-    const temp1 = [{ ...contacts }]
+    const temp1 = [{contact1,contact2}]
     if (!name || !place || !proposalType || !eventType || !budget || !startDate || !endDate || !description || !food || !events) {
       setError("Fill all the details")
       return
-    } else if (contacts.contact1.length !== 10 || contacts.contact2.length !== 10) {
+    } else if (contact1.length !== 10 || contact2.length !== 10) {
       setError("Invalid Phone Number")
       return
     } else if (!imgdata.length) {
@@ -68,25 +108,31 @@ const ProposalForm = () => {
 
     const vid = getId()
     const data = {...temp,contacts:temp1,images:imgdata, vendorId: vid };
-    console.log(data)
-    try {
-      const proposalData = await sendProposal(data)
-      if (proposalData) {
-        alert('Proposal Created')
-        navigate('/proposal')
+    if(id === 'create'){
+      try {
+        const proposalData = await sendProposal(data)
+        if (proposalData) {
+          alert('Proposal Created')
+          navigate('/proposal')
+        }
+  
+      } catch (err) {
+        console.log(err)
       }
-
-    } catch (err) {
-      console.log(err)
+    }else{
+      try {
+        const updateData = await axios.put(`${url}/api/proposal/update/${id}`, data)
+        if (updateData) {
+          alert('Proposal Updated')
+          navigate('/proposal')
+        }
+  
+      } catch (err) {
+        console.log(err)
+      }
     }
-
   };
-  useEffect(()=>{
-    const data = getUser()
-    if(data === 'user'){
-      navigate('/home')
-    }
-  },[])
+  
   return (
     <>
       <Header />
@@ -197,7 +243,7 @@ const ProposalForm = () => {
                       type="number"
                       id="contact1"
                       placeholder="Contact 1"
-                      onChange={(e) => { setContacts({ ...contacts, contact1: e.target.value }) }} />
+                      onChange={(e) => { setContact1(e.target.value) }} value={contact1}/>
                   </div>
                   <div className="form_individual">
                     <label htmlFor="contact1">Contact 2</label>
@@ -206,7 +252,7 @@ const ProposalForm = () => {
                       type="number"
                       id="contact2"
                       placeholder="Contact 2"
-                      onChange={(e) => { setContacts({ ...contacts, contact2: e.target.value }) }} />
+                      onChange={(e) => { setContact2(e.target.value) }} value={contact2} />
                   </div>
                 </div>
               </div>
