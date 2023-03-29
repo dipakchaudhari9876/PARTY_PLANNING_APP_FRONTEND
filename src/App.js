@@ -19,7 +19,7 @@ function App() {
         <Route path="/home" element={<StrictRoute Child={Home}/> }/>
         <Route path="/proposal" element={<StrictRoute Child={Proposal}/>}/>
         <Route path="/event/:id" element={<StrictRoute Child={Event}/>}/>
-        <Route path="/pro" element={<StrictRoute Child={ProposalForm}/>}/>
+        <Route path="/pro/:id" element={<StrictRoute Child={ProposalForm}/>}/>
       </Routes>
     </BrowserRouter>
     
