@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react'
-import { proposalData } from '../../data'
 import { getProposalData, singleProposal } from '../../Utilities/proposal'
 import { getId, getUser } from '../Auth/authentication'
 import Header from '../Header/Header'

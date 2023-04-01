@@ -1,113 +1,31 @@
-.logo{
-    font: Open Sans, Bold;
-    letter-spacing: 1.28px;
-    color: #FFFFFF;
-    margin: 20px;
-    font-weight: 100px;
-    top: 10px;
-
+.Register{
+    color: rgb(101, 100, 98);
+    padding: 2px 10px;
 }
-.input {
-    padding-left:5px ;
-    border: none;
-    outline: none;
-}
-.registractionpage{
-    width:100vw;
-    height:100vh;
-    position:absolute;
-    top:0px;
-    margin-top: 0px;
-    background-image: url("./../../Assets/Images/backgroundimage.png");
-    background-size: cover;
-    background-position: 0px;
-    background-repeat: no-repeat;
-    color: white;
-    
-}
-.summary{
-    text-align: left;
-    font: Open Sans, Semibold;
-    letter-spacing: 3.5px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    opacity: 1;
-    font-size: 50px;
-    margin: 30px;
-
-}
-.registrationformsection{
-    display: flex;
-    flex-direction: column;
-    color: black;
-    background-color: white;
-    width: 300px;
-    height: auto;
-    gap: 0px 20px;
-    border: 1px;
-    border-radius: 10px;
-    /* padding: 10px; */
-    padding:10px 30px;
-    padding-bottom: 20px;
+.Register_head{
+    color: rgb(120, 113, 113);
+    margin-bottom: 25px;
 }
 
-.form-Header{
-    font-size: 20px;
-    font-weight: 500;
-    text-align: center;
+.register_bottom{
     margin-top: 10px;
-}
-.registrationformsection>input{
-    margin:10px;
-    height:30px;
-    border: 1px solid #D1D1D1;
-    border-radius: 4px;
-    font: Open Sans;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    
-}
-.registrationformsection>h3{
-    font: normal normal normal 22px/30px Open Sans;
-    letter-spacing: 0.53px;
-    color: #1B2734;
-    opacity: 1;
-    padding: 0px 10px;
-}
-.mainpage{
     display: flex;
-    margin: 70px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-
-.buttonsection{
-    margin-top: 10px;
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    padding: 0px 10px;
-
-}
-
-.register-registerbutton{
-    padding: 5px 8px;
-    border: none;
-    outline: none;
-    background-color: rgb(26, 128, 196);
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    border-radius: 5px;
-
-}
-
-.register-signinbutton{
-    border: none;
-    outline: none;
-    background-color: white;
-    color: rgb(16, 126, 210);
-    font-size: 15px;
+.register_bottom_left{
+    color: rgb(23, 157, 210);
     cursor: pointer;
 }
 
+.register_bottom_right{
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background-color: rgb(23, 160, 214);
+    border-radius: 3px;
+    cursor: pointer;
+}
