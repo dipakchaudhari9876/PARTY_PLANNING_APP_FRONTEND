@@ -4,9 +4,8 @@ import "./proposal.css";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import ProposalList from "../ProposalList/ProposalList";
-import { proposalData } from "../../data";
 import { getVendorProposal } from "../../Utilities/proposal";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { getId, getUser } from "../Auth/authentication";
 
 const Proposal = () => {

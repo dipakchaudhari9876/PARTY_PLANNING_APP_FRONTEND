@@ -1,0 +1,66 @@
+.Login {
+    max-width: 90%;
+    margin: auto;
+    /* border: 1px solid black; */
+    color: rgb(96, 93, 93);
+}
+
+.Login_head {
+    margin-bottom: 20px;
+}
+
+.Login_form {
+    width: 100%;
+    /* border: 1px solid black; */
+}
+
+.Login_form_input {
+    width: 97%;
+    height: 32px;
+    font-size: 17px;
+    padding-left: 5px;
+    margin-bottom: 20px;
+    border-color: rgb(180, 173, 173);
+    outline: none;
+}
+
+
+.Login_form_password{
+    position: relative;
+}
+
+.Login_form_pass_icon{
+    position: absolute;
+    right: 12px;
+    top: 6px;
+    font-size: larger;
+}
+
+.Login_forgot{
+    text-align: end;
+    color: rgb(30, 165, 218);
+    cursor: pointer;
+}
+
+.Login_btnSec{
+    margin: 10px 0px 15px 0px;
+    display: flex;
+    justify-content: space-around;
+    color: rgb(27, 155, 206);
+}
+
+.Login_link{
+    cursor: pointer;
+}
+
+.Login_btn{
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background-color: rgb(23, 160, 214);
+    border-radius: 3px;
+    cursor: pointer;
+}
