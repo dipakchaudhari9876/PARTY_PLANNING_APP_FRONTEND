@@ -26,7 +26,6 @@ const Login = ({ temp, type }) => {
             setError('Fill all the details')
             return
         }
-        console.log(form)
 
         if (type === 'vendor') {
 
