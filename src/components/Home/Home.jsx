@@ -14,9 +14,9 @@ const Home = () => {
   const [proData, setproData] = useState([])
   const [seldata, setselData] = useState([])
   useEffect(() => {
-    
+
     const temp = getUser()
-    if(temp !== "user" ){
+    if (temp !== "user") {
       navigate('/proposal')
     }
     const id = getId()
@@ -25,7 +25,7 @@ const Home = () => {
         const proposalData = await getProposalData()
         setproData([...proposalData])
         const userData = await getUserData(id)
-        
+
         if (userData.selectedProposal.length !== 0) {
           const siglepro = await singleProposal(userData.selectedProposal)
           setselData([{ ...siglepro }])
@@ -48,20 +48,20 @@ const Home = () => {
         {/* <button onClick={display}>Display</button> */}
       </div>
       <div className="Home_proposalDisplay">
-      {seldata.length !== 0 && <>
-        <div className='Home_proposalDisplay_header'>Selected</div>
-        <div className="Home_proposalDisplay_content">
-          {seldata.map((data) => {
-            return <ProDisplay key={data._id} {...data} temp={true} />;
-          })}
-        </div>
+        {seldata.length !== 0 && <>
+          <div className='Home_proposalDisplay_header'>Selected</div>
+          <div className="Home_proposalDisplay_content">
+            {seldata.map((data) => {
+              return <ProDisplay key={data._id} {...data} temp={true} />;
+            })}
+          </div>
         </>}
         <div className='Home_proposalDisplay_header'>Proposals</div>
-        <div className="Home_proposalDisplay_content">
-          {proData.map((data) => {
-            return <ProDisplay key={data._id} {...data} temp={false} />;
-          })}
-        </div>
+          <div className="Home_proposalDisplay_content">
+            {proData.map((data) => {
+              return <ProDisplay key={data._id} {...data} temp={false} />;
+            })}
+          </div>
       </div>
     </>
   );
