@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './auth.css'
 import Login from '../Login/Login'
-import Register from '../Register/Register'
+import Register from '../register/register'
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../Auth/authentication";
 
