@@ -10,24 +10,20 @@ const getVendorProposal = async (id) => {
         const vendorProposal = await Axios.get(`${url}/api/proposal/findall/${id}`,{
             params:{jwtoken:jwtoken,data:userdata}
         })
-        // console.log(vendorProposal.data)
         return vendorProposal.data
 
     } catch (err) {
-        console.log(err)
         return err.response.data.error
     }
 
 }
 
 const sendProposal = async(data)=>{
-    console.log(data)
     try {
         const proposal = await Axios.post(`${url}/api/proposal/add`,data)
         return proposal.data
 
     } catch (err) {
-        console.log(err)
         return err.response.data.error
     }
 }
@@ -38,7 +34,6 @@ const singleProposal = async(id)=>{
         return singleProposal.data
         
     } catch (err) {
-        console.log(err)
         return err.response.data.error
     }
 }
@@ -52,7 +47,6 @@ const getProposalData = async()=>{
         const data = await Axios.get(`${url}/api/user/getallproposal`,{
             params:{jwtoken:jwtoken,data:userdata}
         })
-
         return (data.data)
 
     }catch(err){

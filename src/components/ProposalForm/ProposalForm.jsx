@@ -4,30 +4,33 @@ import { imgUpload } from "../../Utilities/imageUpload";
 import CloseIcon from "@mui/icons-material/Close";
 import Img from "./Img";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { sendProposal } from "../../Utilities/proposal";
-import { getId } from "../Auth/authentication";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { sendProposal, singleProposal } from "../../Utilities/proposal";
+import { getId, getUser } from "../Auth/authentication";
 import Header from "../Header/Header";
+const url = process.env.REACT_APP_API
 
 const ProposalForm = () => {
+  const {id} = useParams()
+  const [error, setError] = useState("")
   const navigate = useNavigate();
   const [file, setFile] = useState([]);
   const [imgdata, setImgdata] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    place: "",
-    proposalType: "",
-    eventType: "",
-    budget: 0,
-    startDate: "",
-    endDate: "",
-    description: "",
-    contacts: [{contact:'9808764351'},{contact:'9808764351'}],
-    food: "",
-    events: "",
-    images: [],
-  });
+
+  const [name, setName] = useState("")
+  const [place, setPlace] = useState("")
+  const [proposalType, setProposalType] = useState("")
+  const [eventType, setEventType] = useState("")
+  const [budget, setBudget] = useState("")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
+  const [food, setFood] = useState("")
+  const [events, setEvents] = useState("")
+  const [description, setDescription] = useState("")
+  const [contact1,setContact1] = useState("")
+  const [contact2,setContact2] = useState("")
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -37,10 +40,7 @@ const ProposalForm = () => {
         const data = await imgUpload(file[i]);
         arr.push(data);
       }
-      setFormData({
-        ...formData,
-        images: [...arr],
-      });
+
       console.log(arr);
       setImgdata([...arr]);
       setLoading(false);
@@ -51,30 +51,88 @@ const ProposalForm = () => {
     }
   };
 
+  const setValues =async(id)=>{
+    try {
+      const data = await singleProposal(id);
+      if (data) {
+        setName(data.name)
+        setPlace(data.place)
+        setBudget(data.budget)
+        // setContacts([...data.contacts])
+        setDescription(data.description)
+        setEndDate(data.endDate)
+        setEventType(data.eventType)
+        setEvents(data.events)
+        setFood(data.food)
+        setProposalType(data.proposalType)
+        setStartDate(data.startDate)
+        setImgdata([...data.images])
+        setContact1(data.contacts[0].contact1)
+        setContact2(data.contacts[0].contact2)
+      }
+      
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(()=>{
+    const data = getUser()
+    if(data === 'user'){
+      navigate('/home')
+      
+    }
+    if(id !== 'create'){
+      setValues(id)
+    }
+  },[])
+
   const formSubmitHandler = async (e) => {
     e.preventDefault();
 
+    const temp = { name, place, proposalType, eventType, budget, startDate, endDate, description, food, events }
+    const temp1 = [{contact1,contact2}]
+    if (!name || !place || !proposalType || !eventType || !budget || !startDate || !endDate || !description || !food || !events) {
+      setError("Fill all the details")
+      return
+    } else if (contact1.length !== 10 || contact2.length !== 10) {
+      setError("Invalid Phone Number")
+      return
+    } else if (!imgdata.length) {
+      setError("Add Images")
+      return
+    } else {
+      setError("")
+    }
+
     const vid = getId()
-    console.log({...formData,vendorId:vid});
-    try{
-      const data = await sendProposal({...formData,vendorId:vid})
-      if(data){
-        console.log('load')
-        console.log(data)
+    const data = {...temp,contacts:temp1,images:imgdata, vendorId: vid };
+    if(id === 'create'){
+      try {
+        const proposalData = await sendProposal(data)
+        if (proposalData) {
+          alert('Proposal Created')
           navigate('/proposal')
+        }
+  
+      } catch (err) {
+        console.log(err)
       }
-
-    }catch(err){
-      console.log(err)
+    }else{
+      try {
+        const updateData = await axios.put(`${url}/api/proposal/update/${id}`, data)
+        if (updateData) {
+          alert('Proposal Updated')
+          navigate('/proposal')
+        }
+  
+      } catch (err) {
+        console.log(err)
+      }
     }
-
   };
-  useEffect(()=>{
-    const vid = getId()
-    if(vid === false){
-      navigate('/')
-    }
-  },[])
+  
   return (
     <>
       <Header />
@@ -93,22 +151,17 @@ const ProposalForm = () => {
                     className="form_eventName"
                     type="text"
                     id="event"
-                    onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value });
-                    }}
-                  />
+                    placeholder="Type Event Name"
+                    onChange={(e) => { setName(e.target.value) }} value={name} />
                 </div>
                 <div className="form_align">
                   <div className="form_individual">
-                    <label htmlFor="place">Event Place</label>
+                    <label htmlFor="place">Place of Event</label>
                     <select
                       className="filter-select"
-                      id="event"
-                      onChange={(e) => {
-                        setFormData({ ...formData, place: e.target.value });
-                      }}
-                    >
-                      <option defaultValue={true}>Select</option>
+                      id="place"
+                      onChange={(e) => { setPlace(e.target.value) }} value={place} >
+                      <option value="" defaultValue={true}>Select</option>
                       <option value="Banglore">Banglore</option>
                       <option value="Mumbai">Mumbai</option>
                       <option value="Pune">Pune</option>
@@ -119,15 +172,9 @@ const ProposalForm = () => {
                   <div className="form_individual">
                     <label htmlFor="Ptype">Proposal Type</label>
                     <select
-                      className="filter-select"
                       id="Ptype"
-                      onChange={(e) => {
-                        setFormData({
-                          ...formData,
-                          proposalType: e.target.value,
-                        });
-                      }}
-                    >
+                      className="filter-select"
+                      onChange={(e) => { setProposalType(e.target.value) }} value={proposalType}>
                       <option defaultValue={true}>Select</option>
                       <option value="Beach">Beach</option>
                       <option value="Hotel">Hotel</option>
@@ -143,10 +190,7 @@ const ProposalForm = () => {
                     <select
                       className="filter-select"
                       id="Etype"
-                      onChange={(e) => {
-                        setFormData({ ...formData, eventType: e.target.value });
-                      }}
-                    >
+                      onChange={(e) => { setEventType(e.target.value) }} value={eventType}>
                       <option defaultValue={true}>Select</option>
                       <option value="Class A">Class A</option>
                       <option value="Class A+">Class A+</option>
@@ -157,13 +201,9 @@ const ProposalForm = () => {
                     <label htmlFor="budget">Budget</label>
                     <input
                       className="filter-select"
-                      type="text"
-                      id="budget"
+                      type="number"
                       placeholder=" 0000"
-                      onChange={(e) => {
-                        setFormData({ ...formData, budget: e.target.value });
-                      }}
-                    />
+                      onChange={(e) => { setBudget(e.target.value) }} value={budget} />
                   </div>
                 </div>
                 <div className="form_align">
@@ -173,10 +213,7 @@ const ProposalForm = () => {
                       className="filter-select"
                       type="date"
                       id="startDate"
-                      onChange={(e) => {
-                        setFormData({ ...formData, startDate: e.target.value });
-                      }}
-                    />
+                      onChange={(e) => { setStartDate(e.target.value) }} value={startDate} />
                   </div>
                   <div className="form_individual">
                     <label htmlFor="endDate">To</label>
@@ -184,56 +221,43 @@ const ProposalForm = () => {
                       className="filter-select"
                       type="date"
                       id="endDate"
-                      onChange={(e) => {
-                        setFormData({ ...formData, endDate: e.target.value });
-                      }}
-                    />
+                      onChange={(e) => { setEndDate(e.target.value) }} value={endDate} />
                   </div>
                 </div>
+
                 <div className="form_individual">
                   <label htmlFor="desc">Description</label>
-                  {/* <input
-              className="proposalForm_desc"
-              type="text"
-              id="desc"
-              onChange={(e) => {
-                setFormData({ ...formData, description: e.target.value });
-              }}
-            /> */}
                   <textarea
                     className="proposalForm_desc"
+                    placeholder="Type some description about event"
                     type="text"
-
-                    id="contact1"
-                    // onChange={(e) => {
-                    //   setFormData({
-                    //     ...formData,
-                    //     contacts: [
-                    //       ...formData.contacts,
-                    //       { contact: e.target.value },
-                    //     ],
-                    //   });
-                    // }}
-                  />
+                    id="desc"
+                    onChange={(e) => { setDescription(e.target.value) }} value={description}
+                  ></textarea>
                 </div>
-                <div className="form_individual">
-                  <label htmlFor="contact2">Contact</label>
-                  <input
-                    className="form_contact"
-                    type="text"
-                    id="contact2"
-                    // onChange={(e) => {
-                    //   setFormData({
-                    //     ...formData,
-                    //     contacts: [
-                    //       ...formData.contacts,
-                    //       { contact: e.target.value },
-                    //     ],
-                    //   });
-                    // }}
-                  />
+                <div className="form_align">
+                  <div className="form_individual">
+                    <label htmlFor="contact1">Contact 1</label>
+                    <input
+                      className="filter-select"
+                      type="number"
+                      id="contact1"
+                      placeholder="Contact 1"
+                      onChange={(e) => { setContact1(e.target.value) }} value={contact1}/>
+                  </div>
+                  <div className="form_individual">
+                    <label htmlFor="contact1">Contact 2</label>
+                    <input
+                      className="filter-select"
+                      type="number"
+                      id="contact2"
+                      placeholder="Contact 2"
+                      onChange={(e) => { setContact2(e.target.value) }} value={contact2} />
+                  </div>
                 </div>
               </div>
+
+
               <div className="proposalForm_right">
                 <div className="form_individual">
                   <div className="proposalForm_image_head">
@@ -261,47 +285,31 @@ const ProposalForm = () => {
                 </div>
                 <div className="form_individual">
                   <label htmlFor="food">Food Preferences</label>
-                  {/* <input
-              className="proposalForm_desc_right"
-              type="text"
-              id="food"
-              onChange={(e) => {
-                setFormData({ ...formData, food: e.target.value });
-              }}
-            /> */}
                   <textarea
                     className="proposalForm_desc_right"
                     type="text"
                     id="food"
                     placeholder="Type your preferences here"
-                    onChange={(e) => {
-                      setFormData({ ...formData, food: e.target.value });
-                    }}
+                    onChange={(e) => { setFood(e.target.value) }} value={food}
                   ></textarea>
                 </div>
                 <div className="form_individual">
                   <label htmlFor="events">Events</label>
-                  {/* <input
-              className="proposalForm_desc_right"
-              type="text"
-              id="events"
-              onChange={(e) => {
-                setFormData({ ...formData, events: e.target.value });
-              }}
-            /> */}
                   <textarea
                     className="proposalForm_desc_right"
                     type="text"
                     id="events"
                     placeholder="Place your type of events here"
-                    onChange={(e) => {
-                      setFormData({ ...formData, events: e.target.value });
-                    }}
+                    onChange={(e) => { setEvents(e.target.value) }} value={events}
                   ></textarea>
                 </div>
               </div>
             </div>
+            
             <div className="buttonDiv">
+            {error && <div className="form-error">
+              {error}
+            </div>}
               <button
                 type="submit"
                 className="postButton"

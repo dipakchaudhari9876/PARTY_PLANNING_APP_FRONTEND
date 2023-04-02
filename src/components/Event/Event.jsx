@@ -1,73 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./event.css";
-import Img from "../ProposalForm/Img";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { singleProposal } from "../../Utilities/proposal";
 import { getVendorData } from "../../Utilities/vendor";
+import axios from "axios";
+import { getId, getUser } from "../Auth/authentication";
+const url = process.env.REACT_APP_API
 
-const data = {
-  id: 765,
-  name: "Avijit Pateriya",
-  email: "avijit@gmail.com",
-  price: "22000",
-  location: "Banglore",
-  startDate: "22 Dec 2023",
-  endDate: "31 Dec 2023",
-  eventType: "New Year Party",
-  eventClass: "Class A",
-  eventImage: [
-    {
-      url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5JTIwdmVudWV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5JTIwdmVudWV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5JTIwdmVudWV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
-    },
-  ],
-  venueAndArrangement:
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et dolores molestiae ratione qui. Aut, praesentium animi. Culpa consequuntur repudiandae aut, delectus recusandae corporis maiores perspiciatis eligendi distinctio id, ab expedita!",
-  contact: [
-    {
-      contact: 9876543210,
-    },
-    {
-      contact: 9676543210,
-    },
-  ],
-  foodPreference: [
-    {
-      id: 1,
-      task: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-    },
-    {
-      id: 2,
-      task: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-    },
-    {
-      id: 3,
-      task: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-    },
-    {
-      id: 4,
-      task: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-    },
-    {
-      id: 5,
-      task: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-    },
-  ],
-  events:
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et dolores molestiae ratione qui. Aut, praesentium animi.",
-};
 
 const Event = () => {
+  const navigate = useNavigate()
+  const userId = getId()
   const { id } = useParams();
   const [proposal, setProposal] = useState({});
   const [vdata, setVdata] = useState({});
   useEffect(() => {
+    const temp = getUser()
+    if (temp !== "user") {
+      navigate('/proposal')
+    }
     const getSingleData = async (id) => {
       try {
         const data = await singleProposal(id);
@@ -86,11 +38,21 @@ const Event = () => {
     getSingleData(id);
   }, []);
 
-  const handle = () => {
-    console.log(proposal);
-    console.log(vdata);
-    console.log(Object.keys(proposal).length);
-  };
+  const handle = async () => {
+    const temp = { selectedProposal: `${proposal._id}` }
+
+    try {
+      const updateData = await axios.put(`${url}/api/user/selectproposal/${userId}`, temp)
+      if (updateData) {
+        navigate('/home')
+      }
+
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+
   return (
     <>
       <Header />
@@ -113,7 +75,7 @@ const Event = () => {
             <div className="Event_Content_left">
               <img
                 className="Event_Content_left_img"
-                src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhcnR5JTIwdmVudWV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60"
+                src={proposal.images[0].url}
                 alt="main"
               />
               <div className="Event_Content_left_id">
@@ -176,16 +138,18 @@ const Event = () => {
                     <b>Contacts</b>
                   </div>
                   <div className="Event_Content_right_right_contact">
-                    {proposal.contacts.map((data, i) => {
-                      return (
-                        <div key={data.contact + i} className="contact_content">
-                          <div className="contactname">Contact{i + 1}</div>
-                          <div className="contactNumber">
-                            +91&nbsp;{data.contact}
-                          </div>
-                        </div>
-                      );
-                    })}
+                    <div className="contact_content">
+                      <div className="contactname">Contact 1</div>
+                      <div className="contactNumber">
+                        +91&nbsp;{proposal.contacts[0].contact1}
+                      </div>
+                    </div>
+                    <div className="contact_content">
+                      <div className="contactname">Contact 1</div>
+                      <div className="contactNumber">
+                        +91&nbsp;{proposal.contacts[0].contact2}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

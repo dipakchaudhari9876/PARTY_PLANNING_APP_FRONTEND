@@ -23,16 +23,5 @@ const userRegister = async (data) => {
     }
 }
 
-const userlogin = async (data) => {
-    try {
-        const loginData = await Axios.post(`${url}/api/user/login`, data)
-        if(loginData){
-            return loginData.data
-        }
 
-    } catch (err) {
-        return err
-    }
-}
-
-export {getUserData,userRegister,userlogin}
+export {getUserData,userRegister}

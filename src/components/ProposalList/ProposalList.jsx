@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./proposalList.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { removeProposal } from "../../Utilities/proposal";
 
 const ProposalList = ({
@@ -15,12 +15,14 @@ const ProposalList = ({
   events,
   _id,
 }) => {
+  const navigate = useNavigate()
   const [data, setData] = useState("");
   const handle = async (id) => {
     try {
       const data = await removeProposal(id);
       if (data) {
         setData(data);
+        window.location.reload()
       }
     } catch (err) {
       console.log(err);
@@ -59,6 +61,9 @@ const ProposalList = ({
             </ul>
             <div className="proposalList-btn">
               <EditIcon
+              onClick={()=>{
+                navigate(`/pro/${_id}`)
+              }}
                 titleAccess="Edit"
                 className="proposalList-editbtn"
               ></EditIcon>
