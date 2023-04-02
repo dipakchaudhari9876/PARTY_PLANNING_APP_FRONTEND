@@ -1,7 +1,8 @@
 .ProDisplay {
-    width: 23%;
+    width: 90%;
     height: fit-content;
     border-radius: 10px;
+    margin: 15px auto 10px auto;
     /* margin: 0 14px 20px 10px; */
     -webkit-box-shadow: -2px 2px 12px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -2px 2px 12px 0px rgba(0, 0, 0, 0.75);
