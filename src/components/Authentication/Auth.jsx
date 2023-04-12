@@ -46,8 +46,8 @@ const Auth = () => {
             <div className="main_right">
                 <div className="main-right-content">
                     <div className="main-right-content_top">
-                        <div style={{cursor:"pointer"}} className={method === 'vendor'?"content_method":null} onClick={()=>{handlemethod('vendor')}}>Vendor</div>
-                        <div style={{cursor:"pointer"}} className={method === 'user'?"content_method":null} onClick={()=>{handlemethod('user')}}>User</div>
+                        <div style={{cursor:"pointer"}} className={method === 'vendor'?"content_method":"content"} onClick={()=>{handlemethod('vendor')}}>Vendor</div>
+                        <div style={{cursor:"pointer"}} className={method === 'user'?"content_method":"content"} onClick={()=>{handlemethod('user')}}>User</div>
                     </div>
                     {page === 'login' && <Login temp={change} type = {method}/>}
                     {page === 'register' && <Register temp={change} type={method}/>}
