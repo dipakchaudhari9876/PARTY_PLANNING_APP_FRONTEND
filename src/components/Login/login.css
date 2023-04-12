@@ -64,3 +64,36 @@
     border-radius: 3px;
     cursor: pointer;
 }
+
+@media only screen and (max-width:395px){
+    .Login_head{
+        font-size: 20px;
+    }
+
+    .Login_form_input {
+        height: 42px;
+        font-size: 19px;
+        
+    }
+
+    .Login_form_pass_icon{
+        right: 23px;
+        top: 9px;
+        font-size: 25px;
+    }
+
+    .Login_btnSec{
+        margin: 25px 0px 15px 0px;
+        
+    }
+
+    .Login_link{
+        font-size: 20px;
+    }
+
+    .Login_btn{
+        padding: 10px 14px;
+        font-size: 19px
+    }
+
+}

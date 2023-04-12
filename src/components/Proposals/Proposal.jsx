@@ -67,7 +67,7 @@ const Proposal = () => {
             </div>
           </div>
           <div className="proposal-head-right">
-            <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon>
+            {/* <FilterAltIcon className="proposal-head-filter-icon"></FilterAltIcon> */}
 
             <Link to={`/pro/${'create'}`} className="proposal-head-btn">CREATE</Link>
 

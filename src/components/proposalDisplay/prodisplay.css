@@ -44,3 +44,25 @@
     color: rgb(81, 79, 79);
 
 }
+
+@media only screen and (max-width:395px) {
+    .ProDisplay_img{
+        height: 208px;
+    }
+
+    .ProDisplay_content_name {
+        font-size: 25px;
+    }
+
+    .ProDisplay_content_price {
+        font-size: 22px;
+    }
+
+    .ProDisplay_content_place {
+        font-size: 23px;
+    }
+
+    .ProDisplay_content_delete{
+        font-size: 2rem;
+    }
+}

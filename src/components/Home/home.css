@@ -1,29 +1,47 @@
-.Home-headImg{
+.Home-headImg {
     width: 100%;
     object-fit: cover;
     height: 210px;
 }
 
-.Home_proposalDisplay{
+.Home_proposalDisplay {
     width: 90%;
     padding: 20px 0px;
     margin: 20px auto;
     height: fit-content;
 }
 
-.Home_proposalDisplay_header{
+.Home_proposalDisplay_header {
     font-size: 24px;
     color: rgb(79, 76, 76);
     margin-bottom: 20px;
 }
 
-.Home_proposalDisplay_content{
+.Home_proposalDisplay_content {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* flex: 4;
     flex-wrap: wrap; */
     /* justify-content: space-between; */
     /* gap: 2rem;
     align-content: flex-start; */
+}
+
+@media only screen and (max-width:395px) {
+
+    .Home_proposalDisplay_header {
+        padding-left: 20px;
+        font-weight: 500;
+        font-size: 31px;
+    }
+
+    .Home_proposalDisplay {
+        width: 100%;
+    }
+
+    .Home_proposalDisplay_content {
+        display: flex;
+        flex-direction: column;
+    }
 }

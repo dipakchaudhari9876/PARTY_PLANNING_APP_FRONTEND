@@ -60,7 +60,43 @@
     margin-bottom: 20px;
 }
 
+.content{
+    font-size: 15px;
+}
+
 .content_method{
     color: rgb(21, 166, 223);
     transform: scale(1.3);
+}
+
+@media only screen and (max-width:395px){
+    .Auth_logo {
+        color: #000000;
+        font-size: 46px;
+        
+    }
+
+    .Auth_main {
+        flex-direction: column;
+    }
+
+    .main_left {
+        display: none;
+    }
+
+    .main-right-content{
+        width: 354px;
+        
+    }
+
+    .content{
+        font-size: 23px;
+    }
+
+    .content_method{
+        font-size: 23px;
+        transform: scale(1.3);
+    }
+
+
 }
